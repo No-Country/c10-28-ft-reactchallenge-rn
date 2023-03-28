@@ -2,13 +2,13 @@ import { View, Text } from "react-native";
 import React from "react";
 
 
-const Home = () => {
+const Perfil = () => {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>Mi perfil</Text>
     </View>
   );
 };
 
 
-export default Home;
+export default Perfil;
