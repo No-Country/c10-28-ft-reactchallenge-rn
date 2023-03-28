@@ -5,7 +5,7 @@ import Carousel, { Pagination } from "react-native-snap-carousel-v4";
 const renderItem = ({ item }) => {
   return (
     <View className="justify-center, align-middle bg-white p-3 rounded-lg ">
-      <Image className="w-14, h-20 rounded-lg " source={item} />
+      <Image className="w-14, h-28 rounded-lg " source={{ uri: item.uri }} />
       <TouchableOpacity
         style={{
           backgroundColor: "#9874BA",
@@ -16,25 +16,25 @@ const renderItem = ({ item }) => {
           width: "100%",
         }}>
         <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
-          Categoria
+          {item.category}
         </Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const MyCarrousel = () => {
+const Carrousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef(null);
 
-  const images = [
-    { uri: "https://picsum.photos/id/10/200/300" },
-    { uri: "https://picsum.photos/id/20/200/300" },
-    { uri: "https://picsum.photos/id/30/200/300" },
-    { uri: "https://picsum.photos/id/40/200/300" },
-    { uri: "https://picsum.photos/id/50/200/300" },
+  const data = [
+    { uri: "https://picsum.photos/id/10/200/300", category: "Ropa" },
+    { uri: "https://picsum.photos/id/20/200/300", category: "Telefonia" },
+    { uri: "https://picsum.photos/id/30/200/300", category: "Computacion" },
+    { uri: "https://picsum.photos/id/40/200/300", category: "Automotor" },
+    { uri: "https://picsum.photos/id/50/200/300", category: "Salud" },
   ];
-  console.log(images);
+
   const renderArrow = (direction) => {
     return (
       <TouchableOpacity
@@ -79,10 +79,10 @@ const MyCarrousel = () => {
       }}>
       <Carousel
         ref={carouselRef}
-        data={images}
+        data={data}
         renderItem={renderItem}
         sliderWidth={500}
-        itemWidth={150}
+        itemWidth={200}
         itemHeight={150}
         onSnapToItem={(index) => setActiveIndex(index)}
         autoplay={false}
@@ -91,7 +91,7 @@ const MyCarrousel = () => {
         autoplayDelay={500}
       />
       {/*  <Pagination
-        dotsLength={images.length}
+        dotsLength={data.length}
         activeDotIndex={activeIndex}
         containerStyle={{ marginTop: 8, alignItems: "center" }}
         dotStyle={{
@@ -115,4 +115,4 @@ const MyCarrousel = () => {
   );
 };
 
-export default MyCarrousel;
+export default Carrousel;
