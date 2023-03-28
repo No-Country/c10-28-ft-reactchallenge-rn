@@ -35,45 +35,12 @@ const Carrousel = () => {
     { uri: "https://picsum.photos/id/50/200/300", category: "Salud" },
   ];
 
-  const renderArrow = (direction) => {
-    return (
-      <TouchableOpacity
-        style={{
-          position: "absolute",
-          [direction === "left" ? "left" : "right"]: 0,
-          justifyContent: "center",
-          alignItems: "center",
-          width: 48,
-          height: 48,
-          top: "40%",
-          borderRadius: 100,
-          backgroundColor: "gray",
-        }}
-        onPress={() => {
-          if (direction === "left") {
-            carouselRef.current.snapToPrev();
-          } else {
-            carouselRef.current.snapToNext();
-          }
-        }}>
-        {direction == "left" ? (
-          <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
-            {"<"}
-          </Text>
-        ) : (
-          <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
-            {">"}
-          </Text>
-        )}
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <View
       style={{
         justifyContent: "center",
         alignItems: "center",
+        left: -80,
         borderColor: "gray",
         padding: 5,
       }}>
@@ -81,8 +48,8 @@ const Carrousel = () => {
         ref={carouselRef}
         data={data}
         renderItem={renderItem}
-        sliderWidth={500}
-        itemWidth={200}
+        sliderWidth={600}
+        itemWidth={180}
         itemHeight={150}
         onSnapToItem={(index) => setActiveIndex(index)}
         autoplay={false}
@@ -109,8 +76,6 @@ const Carrousel = () => {
         }}
         dotOpacity={0.4}
       /> */}
-      {renderArrow("left")}
-      {renderArrow("right")}
     </View>
   );
 };
