@@ -3,6 +3,8 @@ import Acercade from "../pages/Acercade";
 import Contacto from "../pages/Contacto";
 import MiPerfil from "../pages/MiPerfil";
 import { useNavigation } from '@react-navigation/native';
+import Logo from "../image/MenuHamburguesa.png"
+
 
 
 import {
@@ -13,6 +15,7 @@ import {
     View,
     Image,
     Pressable,
+    TouchableOpacity,
   } from 'react-native';
 
   
@@ -45,22 +48,27 @@ const Menu = () => {
           <Pressable
             style={{marginRight: 10}}
             onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
-            <Text>Hola</Text>
+            <Image source={Logo} style = {styles.imageLogo}/>
           </Pressable>
         ),
       });
     }, [navigation,isDrawerOpen]);
   
     const NavigationView = () => (
-      <View className="bg-slate-900">
+      <View className="bg-slate-200 flex-1">
         <Image source={require('../image/logo.png')} style = {styles.image}/>
-        <Button title="Mi Perfil" onPress={() => navigation.navigate("Perfil")} />
-        <Acercade />
-        <Contacto />
-        <Button
-          title="Close drawer"
-          onPress={() => closeDrawer()}
-        />
+          <TouchableOpacity style={styles.button} onPress={() => handleNavigation("Perfil")}>
+            <Text style={styles.text} >Mi Perfil</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => handleNavigation("Acercade")}>
+            <Text style={styles.text} >Acerca de Cambialo</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => handleNavigation("Contacto")}>
+            <Text style={styles.text} >Contacto</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonCerrar}  onPress={() => closeDrawer()}>
+            <Text style={styles.text}>Cerrar</Text>
+          </TouchableOpacity>
       </View>
     );
   
@@ -95,12 +103,39 @@ const Menu = () => {
       
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 130,
+        height: 130,
         resizeMode: 'contain',
         alignSelf: 'center',
         marginBottom: 10,
     },
+    imageLogo: {
+      width: 40,
+      height: 40,
+      resizeMode: 'contain',
+      alignSelf: 'center',
+      marginBottom: 10,
+  },
+  button: {
+    backgroundColor: '#3b0764',
+    borderRadius: 1,
+    padding:10,
+    marginTop:10,
+  },
+  text: {
+    color: '#ffff',
+    textAlign: 'center',
+  },
+  buttonCerrar: {
+    backgroundColor: '#9333ea',
+    marginTop:250,
+    padding:20,
+    margin:80,
+    borderRadius: 4,
+
+
+  }
   });
+
   
   export default Menu;

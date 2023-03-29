@@ -17,10 +17,12 @@ const Stack = createStackNavigator();
 const Navegacion = () => {
   return (
     <Stack.Navigator>
+
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Lista" component={ListaItems} />
       <Stack.Screen name="cards" component={CardItems} />
       <Stack.Screen name="Detalles" component={Detalles} /> 
+
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Perfil" component={MiPerfil} />
       <Stack.Screen name="Acercade" component={Acercade} />
