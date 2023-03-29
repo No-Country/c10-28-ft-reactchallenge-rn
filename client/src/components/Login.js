@@ -26,7 +26,7 @@ const Login = () => {
       <Text style={styles.title}>Iniciar Sesion</Text>
       <Image
         style={styles.logo}
-        source={require("../assets/images/logo-boy-smartphone2.png")}
+        source={require("../images/logo.png")}
       />
       <View style={styles.form}>
         <TextInput
