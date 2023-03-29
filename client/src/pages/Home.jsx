@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Cabecera from "../components/Cabecera";
 import Carrousel from "../components/Carrousel";
 import { ScrollView } from "react-native-gesture-handler";
