@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./src/redux/store";
 import "react-native-gesture-handler";
 import Navegacion from "./src/components/Navegacion";
+
 import { NavigationContainer } from "@react-navigation/native";
 import CardItems from "./src/components/CardItems";
 
