@@ -5,6 +5,7 @@ import store from "./src/redux/store";
 import "react-native-gesture-handler";
 import Navegacion from "./src/components/Navegacion";
 import { NavigationContainer } from "@react-navigation/native";
+import CardItems from "./src/components/CardItems";
 
 export default function App() {
   return (
