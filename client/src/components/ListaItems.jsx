@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cabecera from "./Cabecera";
 import CardItems from "./CardItems";
+import { useDispatch, useSelector } from "react-redux";
+import { getPost } from "../redux/action";
 
 /* const data = [
   { id: "1", title: "Elemento 1" },
@@ -25,26 +27,21 @@ const renderItem = ({ item }) => (
 );
 
 const ListaItems = () => {
-  const [data, setData] = useState([]);
-
-  const getData = async () => {
-    const response = await axios.get(
-      "https://cambialoapi-production.up.railway.app/posts"
-    );
-
-    return setData(response.data);
-  };
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.posts);
 
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(getPost());
+  }, [dispatch]);
+
+  console.log("POST", post);
 
   return (
     <View style={{ flex: 1, backgroundColor: "#EAE0F4" }}>
       <Cabecera />
       <View className="flex-1 my-3">
         <FlatList
-          data={data}
+          data={post}
           renderItem={renderItem}
           keyExtractor={(item) => item.publicacion_id}
           numColumns={2}
