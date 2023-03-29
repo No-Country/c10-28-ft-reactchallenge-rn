@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const Navegacion = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} /> 
+      {/* <Stack.Screen name="Home" component={Home} />  */}
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Perfil" component={MiPerfil} />
       <Stack.Screen name="Acercade" component={Acercade} />
