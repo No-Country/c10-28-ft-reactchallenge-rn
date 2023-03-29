@@ -4,6 +4,7 @@ import Cabecera from "../components/Cabecera";
 import Carrousel from "../components/Carrousel";
 import { ScrollView } from "react-native-gesture-handler";
 
+
 const Home = () => {
   return (
     <View className="flex-1 " style={{ backgroundColor: "#EAE0F4" }}>
@@ -23,5 +24,6 @@ const Home = () => {
     </View>
   );
 };
+
 
 export default Home;
