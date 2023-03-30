@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,14 @@ const Login = () => {
     // Lógica para registrarse
   };
 
+  const navigation = useNavigation();
+
+  const navega = () => {
+    navigation.navigate("Registro");
+  };
   return (
+
+    
     <View style={styles.container}>
       <View style={styles.hero}></View>
       <Text style={styles.title}>Iniciar Sesion</Text>
@@ -29,7 +37,7 @@ const Login = () => {
         source={require("../images/logo.png")}
       />
       <View style={styles.form}>
-        <TextInput
+        <TextInput 
           style={styles.input}
           onChangeText={setEmail}
           value={email}
@@ -48,8 +56,8 @@ const Login = () => {
       </View>
       <View style={styles.register}>
         <Text style={styles.registerText}>¿No tienes cuenta?</Text>
-        <TouchableOpacity onPress={handleRegister}>
-          <Text style={[styles.registerText, styles.registerButton]}>
+        <TouchableOpacity onPress={() => navega()}>
+          <Text   style={[styles.registerText, styles.registerButton]}>
             Regístrate
           </Text>
         </TouchableOpacity>

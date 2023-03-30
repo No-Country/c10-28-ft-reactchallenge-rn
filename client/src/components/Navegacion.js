@@ -12,18 +12,13 @@ import Contacto from "../pages/Contacto";
 import Login from "./Login";
 import Registro from "./Registro";
 import { useNavigation } from "@react-navigation/native";
+import Registro from "./Registro";
+
 
 const Stack = createStackNavigator();
 
 const Navegacion = () => {
-  const navigation = useNavigation();
-  const drawer = useRef(null);
 
-
-
-  const closeDrawer = () => {
-    drawer.current.closeDrawer();
-  };
 
   return (
     <>
