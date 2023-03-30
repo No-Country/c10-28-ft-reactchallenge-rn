@@ -18,30 +18,36 @@ export class PostsService {
   //   return 'This action adds a new post';
   // }
 
-  async findAll(): Promise<Post[]> {
-    // const posts = await this.postsRepository.find();
-    // if (!posts.length) {
-    //   response.forEach(async element => {
-    //     const post = this.postsRepository.create({
-    //       vendedor_id: element.vendedor_id,
-    //       titulo: element.titulo,
-    //       descripcion: element.descripcion,
-    //       condiciones_intercambio: element.condiciones_intercambio,
-    //       trueque: element.trueque,
-    //       venta: element.venta,
-    //       precio: element.precio,
-    //       fotos: element.fotos,
-    //       disponible: element.disponible,
-    //       tipo: element.tipo,
-    //       categoria: element.categoria
-    //     });
+  async findAll(queries): Promise<Post[]> {
 
-    //     await this.postsRepository.save(post);
+    try {
 
-    //   });
-    // }
+      if (Object.keys(queries).length > 0) {
 
-    return await this.postsRepository.find();
+        return await this.postsRepository.find({
+          where: {
+            tipo: queries.tipo
+          }
+        });
+
+      } else {
+
+        return await this.postsRepository.find();
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+      return [];
+
+
+    }
+
+
+
+
+
   }
 
   // findOne(id: number) {
