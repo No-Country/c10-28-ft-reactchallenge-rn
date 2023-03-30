@@ -8,26 +8,25 @@ import {
 } from "react-native";
 import React from "react";
 
-const PostDetail = () => {
+const PostDetail = ({ data }) => {
+  console.log("infoo", data);
   return (
     <ScrollView
       style={{
         backgroundColor: "#ffffff",
-        margin: 15,
+        top: -200,
         paddingTop: 20,
         paddingLeft: 10,
         paddingRight: 10,
         borderRadius: 8,
-        height: "97%",
-      }}
-    >
+        margin: 10,
+      }}>
       <View
         style={{
           justifyContent: "flex-end",
           flexDirection: "row",
           width: "100%",
-        }}
-      >
+        }}>
         <TouchableOpacity
           style={{
             backgroundColor: "#9874BA",
@@ -42,8 +41,7 @@ const PostDetail = () => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}
-        >
+          }}>
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Compra
           </Text>
@@ -59,8 +57,7 @@ const PostDetail = () => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}
-        >
+          }}>
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Trueque
           </Text>
@@ -81,8 +78,7 @@ const PostDetail = () => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}
-        >
+          }}>
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Editar
           </Text>
@@ -101,8 +97,7 @@ const PostDetail = () => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}
-        >
+          }}>
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Eliminar
           </Text>
@@ -116,9 +111,12 @@ const PostDetail = () => {
             width: 300,
             height: 300,
           }}
-          source={require("../images/Image.jpg")}
+          source={
+            data.fotos[0]
+              ? { uri: data.fotos[0] }
+              : require("../images/Image.jpg")
+          }
         />
-        |
       </View>
       <TouchableOpacity
         style={{
@@ -130,16 +128,14 @@ const PostDetail = () => {
           width: "95%",
           marginTop: 50,
           marginBottom: 50,
-        }}
-      >
+        }}>
         <Text
           style={{
             color: "white",
             fontSize: 20,
             fontWeight: "bold",
-          }}
-        >
-          Nombre
+          }}>
+          {data.titulo}
         </Text>
       </TouchableOpacity>
       <TextInput
@@ -155,7 +151,7 @@ const PostDetail = () => {
           shadowOpacity: 0.17,
           shadowRadius: 2.54,
           elevation: 3,
-          marginBottom: 30,
+          marginBottom: 80,
         }}
       />
     </ScrollView>
