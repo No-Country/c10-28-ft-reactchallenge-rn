@@ -44,7 +44,8 @@ export class PostsService {
         return await this.postsRepository.find({
           where: {
             tipo: queries.tipo,
-            categoria: queries.categoria
+            categoria: queries.categoria,
+            vendedor_id: queries.vendedor
           }
         });
 
