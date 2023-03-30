@@ -15,6 +15,23 @@ export class PostsService {
   ) { }
 
   // create(createPostDto: CreatePostDto) {
+
+  //     const post = this.postsRepository.create({
+  //       vendedor_id: element.vendedor_id,
+  //       titulo: element.titulo,
+  //       descripcion: element.descripcion,
+  //       condiciones_intercambio: element.condiciones_intercambio,
+  //       trueque: element.trueque,
+  //       venta: element.venta,
+  //       precio: element.precio,
+  //       fotos: element.fotos,
+  //       disponible: element.disponible,
+  //       tipo: element.tipo,
+  //       categoria: element.categoria
+  //     });
+
+  //     await this.postsRepository.save(post);
+
   //   return 'This action adds a new post';
   // }
 
@@ -26,7 +43,8 @@ export class PostsService {
 
         return await this.postsRepository.find({
           where: {
-            tipo: queries.tipo
+            tipo: queries.tipo,
+            categoria: queries.categoria
           }
         });
 
