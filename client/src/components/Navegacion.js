@@ -9,6 +9,8 @@ import Menu from "./Menu";
 import Acercade from "../pages/Acercade";
 import MiPerfil from "../pages/MiPerfil";
 import Contacto from "../pages/Contacto";
+import Registro from "./Registro";
+
 
 const Stack = createStackNavigator();
 
@@ -23,6 +25,7 @@ const Navegacion = () => {
       <Stack.Screen name="Perfil" component={MiPerfil} />
       <Stack.Screen name="Acercade" component={Acercade} />
       <Stack.Screen name="Contacto" component={Contacto} />
+      <Stack.Screen name="Registro" component={Registro} />
     </Stack.Navigator>
   );
 };
