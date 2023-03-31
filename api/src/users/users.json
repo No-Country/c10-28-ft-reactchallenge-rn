@@ -1,0 +1,83 @@
+[
+    {
+        "user_id": 1,
+        "email": "Gertrude.Hermann0@hotmail.com",
+        "contraseña": "bXbaqIcSPFqf_Af",
+        "nombre_completo": "Rosie Gulgowski",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/353.jpg",
+        "dirección": "071 Hoeger Springs",
+        "teléfono": "459-517-7734"
+    },
+    {
+        "user_id": 2,
+        "email": "Kristoffer.Glover@gmail.com",
+        "contraseña": "CMRoDuvCOFDV2EN",
+        "nombre_completo": "Mrs. Joy Okuneva",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1193.jpg",
+        "dirección": "0566 Romaguera Oval",
+        "teléfono": "952-369-6823"
+    },
+    {
+        "user_id": 3,
+        "email": "Stephania95@hotmail.com",
+        "contraseña": "tqF9A1R8wk8Fd9T",
+        "nombre_completo": "Johanna Davis MD",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/454.jpg",
+        "dirección": "12266 Casey Village",
+        "teléfono": "610-204-9363"
+    },
+    {
+        "user_id": 4,
+        "email": "Deion.Veum77@hotmail.com",
+        "contraseña": "ydFBEqTvBE2kqps",
+        "nombre_completo": "Dr. Jesus Abernathy",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1055.jpg",
+        "dirección": "82927 Johan Trail",
+        "teléfono": "425-846-0953"
+    },
+    {
+        "user_id": 5,
+        "email": "Jeremy.Shields@yahoo.com",
+        "contraseña": "qO5niXGvgtKA3jW",
+        "nombre_completo": "Otis Morar",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1019.jpg",
+        "dirección": "38869 Klocko Locks",
+        "teléfono": "787-652-8292"
+    },
+    {
+        "user_id": 6,
+        "email": "Carey_Turner@gmail.com",
+        "contraseña": "qMBHD5zrjZRkklk",
+        "nombre_completo": "Marion Kozey",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/438.jpg",
+        "dirección": "582 Lou Green",
+        "teléfono": "834-579-1422"
+    },
+    {
+        "user_id": 7,
+        "email": "Lola.Marvin@gmail.com",
+        "contraseña": "x20U4Jr8WZ4iYui",
+        "nombre_completo": "Bonnie Dicki",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/710.jpg",
+        "dirección": "129 Blick River",
+        "teléfono": "344-633-9587"
+    },
+    {
+        "user_id": 8,
+        "email": "Gregorio.Steuber@hotmail.com",
+        "contraseña": "xDm9S79_dvoX7uZ",
+        "nombre_completo": "Cindy Baumbach",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/858.jpg",
+        "dirección": "700 Mckenna Ferry",
+        "teléfono": "629-854-5342"
+    },
+    {
+        "user_id": 9,
+        "email": "Morton_Hodkiewicz78@gmail.com",
+        "contraseña": "F8M8PBzqT6PCWJd",
+        "nombre_completo": "Denise Grimes",
+        "foto_perfil": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/943.jpg",
+        "dirección": "1741 Weber Brook",
+        "teléfono": "359-820-8594"
+    }
+]
