@@ -40,7 +40,7 @@ const Carrousel = () => {
   ];
 
   const navegar = () => {
-    navigation.navigate("Lista");
+    navigation.navigate("Productos");
   
   };
 

@@ -5,8 +5,16 @@ import Carrousel from "../components/Carrousel";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Menu from "../components/Menu";
 import Botons from "../components/Botons";
+import {useDispatch, useSelector } from "react-redux";
+import ListaItems from "../components/ListaItems";
+import {getPost} from "../redux/action";
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state.posts)
+  useEffect(() => {
+    dispatch(getPost())
+  },[])
   return (
     <>
       <View className="flex-1 " style={{ backgroundColor: "#EAE0F4" }}>
@@ -22,6 +30,10 @@ const Home = () => {
               <Carrousel />
             </View>
           </View>
+          <View>
+          <ListaItems data={data} />
+          </View>
+
         </ScrollView>
       </View>
     </>
