@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
@@ -45,7 +45,9 @@ export class PostsService {
           where: {
             tipo: queries.tipo,
             categoria: queries.categoria,
-            vendedor_id: queries.vendedor
+            vendedor_id: queries.vendedor,
+            titulo: ILike(`%${queries.search}%`)
+
           }
         });
 
