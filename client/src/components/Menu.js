@@ -1,10 +1,10 @@
-
 import React, { useRef, useState, useEffect, Children } from "react";
 import Acercade from "../pages/Acercade";
 import Contacto from "../pages/Contacto";
 import MiPerfil from "../pages/MiPerfil";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "../image/MenuHamburguesa.png";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import {
   Button,
@@ -17,9 +17,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
-
-const Menu = ({children}) => {
+const Menu = ({ children }) => {
   const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("right");
   // const changeDrawerPosition = () => {
@@ -36,16 +34,11 @@ const Menu = ({children}) => {
   const openDrawer = () => {
     drawer.current.openDrawer();
     setIsDrawerOpen(true);
-   
   };
   const closeDrawer = () => {
     drawer.current.closeDrawer();
     setIsDrawerOpen(false);
-    
-
   };
-
-
 
   /* useEffect(() => {
     navigation.setOptions({
@@ -61,39 +54,46 @@ const Menu = ({children}) => {
   }, [navigation, isDrawerOpen, props]); */
 
   const NavigationView = () => (
-    <View className="bg-slate-200 flex-1">
+    <View className="bg-slate-200 flex-1 relative  ">
       <Image source={require("../image/logo.png")} style={styles.image} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Perfil")}>
-        <Text style={styles.text}>Mi Perfil</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Acercade")}>
-        <Text style={styles.text}>Acerca de Cambialo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Contacto")}>
-        <Text style={styles.text}>Contacto</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonCerrar}
-        onPress={() => closeDrawer()}>
-        <Text style={styles.text}>Cerrar</Text>
-      </TouchableOpacity>
+      <View style={{ backgroundColor: "#3D2851" }} className="p-5">
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Perfil")}>
+          <Text style={styles.text}>Mi Perfil</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Acercade")}>
+          <Text style={styles.text}>Acerca de Cambialo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Contacto")}>
+          <Text style={styles.text}>Contacto</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ left: "30%" }} className="absolute bottom-20">
+        <TouchableOpacity
+          style={styles.buttonCerrar}
+          className="rounded-3xl  px-8 "
+          onPress={() => closeDrawer()}>
+          <Text className="font-bold " style={styles.text}>
+            CERRAR
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
   return (
     <>
-    <View style={styles.container} >
-    <TouchableOpacity
-    style={{ marginRight: 10 }}
-    onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
-    <Image source={Logo} style={styles.imageLogo} />
-  </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={{ marginRight: 15, paddingBottom: 5 }}
+          onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
+          <Icon name="menu" size={40} color="#fff" />
+        </TouchableOpacity>
       </View>
       <DrawerLayoutAndroid
         ref={drawer}
@@ -101,26 +101,26 @@ const Menu = ({children}) => {
         drawerPosition={"right"}
         onDrawerClose={() => setIsDrawerOpen(false)}
         onDrawerOpen={() => setIsDrawerOpen(true)}
-        renderNavigationView={() => <NavigationView closeDrawer={closeDrawer} />}>
-          <View style={{flex:1, backgroundColor:'blue', height: '100%'}}>
-            {children}
-            </View>
+        renderNavigationView={() => (
+          <NavigationView closeDrawer={closeDrawer} />
+        )}>
+        <View style={{ flex: 1, backgroundColor: "blue", height: "100%" }}>
+          {children}
+        </View>
       </DrawerLayoutAndroid>
-
-    
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-   backgroundColor:'#3D2851',
+    backgroundColor: "#3D2851",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-   
-   height: '10%'
+
+    height: "10%",
   },
- 
+
   paragraph: {
     padding: 16,
     fontSize: 15,
@@ -131,7 +131,8 @@ const styles = StyleSheet.create({
     height: 130,
     resizeMode: "contain",
     alignSelf: "center",
-    marginBottom: 10,
+    marginBottom: 30,
+    marginTop: 20,
   },
   imageLogo: {
     width: 40,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "#3b0764",
+    backgroundColor: "#3D2851",
     borderRadius: 1,
     padding: 10,
     marginTop: 10,
@@ -151,13 +152,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   buttonCerrar: {
-    backgroundColor: "#9333ea",
-    marginTop: 250,
+    backgroundColor: "#3D2851",
     padding: 20,
-    margin: 80,
-    borderRadius: 4,
   },
 });
 
-export default Menu
-
+export default Menu;

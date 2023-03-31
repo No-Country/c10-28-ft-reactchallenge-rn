@@ -25,9 +25,12 @@ const Registro = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.hero}></View>
-      <Text style={styles.title}>Registro</Text>
-      <View style={styles.form}>
+      <View
+        style={styles.hero}
+        className="flex justify-start items-center rounded-b-full w-full">
+        <Text style={styles.title}>Registro</Text>
+      </View>
+      <View className="w-11/12">
         <TextInput
           style={styles.input}
           onChangeText={setFullName}
@@ -59,8 +62,13 @@ const Registro = () => {
           placeholder="Contraseña"
           secureTextEntry
         />
-        <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Registrarse</Text>
+        <TouchableOpacity
+          style={styles.principalColor}
+          className="w-full p-4 rounded-full mt-8 flex justify-center items-center shadow-2xl shadow-black">
+          <Text className="text-slate-50  font-bold  text-xl">
+            {" "}
+            Registrarse
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -81,41 +89,25 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 150,
+    height: "15%",
     backgroundColor: "#3D2851",
-    borderBottomLeftRadius: 130,
-    borderBottomRightRadius: 130,
     zIndex: -1,
   },
   title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 30,
+    fontSize: 40,
     color: "#FFFFFF",
   },
-  form: {
-    marginTop: 30,
-    width: "80%",
-  },
+
   input: {
-    height: 40,
-    margin: 12,
+    height: 60,
     borderColor: "gray",
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+    borderRadius: 7,
+    paddingHorizontal: 15,
+    marginTop: 20,
   },
-  button: {
-    marginTop: 10,
-    backgroundColor: "#3D2851",
-    borderRadius: 100,
-    padding: 20,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
+  principalColor: {
+    backgroundColor: "#3d2851",
   },
 });
 
