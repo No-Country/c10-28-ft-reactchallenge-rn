@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
@@ -41,13 +41,30 @@ export class PostsService {
 
       if (Object.keys(queries).length > 0) {
 
-        return await this.postsRepository.find({
-          where: {
-            tipo: queries.tipo,
-            categoria: queries.categoria,
-            vendedor_id: queries.vendedor
-          }
-        });
+        if (queries.hasOwnProperty("search")) {
+
+          return await this.postsRepository.find({
+            where: {
+              tipo: queries.tipo,
+              categoria: queries.categoria,
+              vendedor_id: queries.vendedor,
+              titulo: ILike(`%${queries.search}%`),
+              venta: queries.venta === "true" ? true : null
+            }
+          });
+
+        } else {
+
+          return await this.postsRepository.find({
+            where: {
+              tipo: queries.tipo,
+              categoria: queries.categoria,
+              vendedor_id: queries.vendedor,
+              venta: queries.venta === "true" ? true : null
+            }
+          });
+
+        }
 
       } else {
 
