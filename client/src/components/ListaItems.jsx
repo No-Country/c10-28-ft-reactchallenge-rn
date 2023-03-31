@@ -34,8 +34,7 @@ const ListaItems = () => {
     dispatch(getPost());
   }, [dispatch]);
 
-  console.log("POST", post);
-
+ 
   return (
     <View style={{ flex: 1, backgroundColor: "#EAE0F4" }}>
       <Cabecera />

@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import ProductsHeaders from "../components/ProductsHeaders";
 import PostDetail from "../components/PostDetail";
@@ -8,11 +8,13 @@ const Detalles = ({ route }) => {
   return (
     <View style={styles.fondo}>
       <View style={styles.principalColor}>
-        <ProductsHeaders />
       </View>
+      <ScrollView style={{flex: 1,position:'absolute', height:'100%'}}>
+        <ProductsHeaders />
       <View style={{ height: "80%" }}>
         <PostDetail data={data} />
       </View>
+      </ScrollView>
     </View>
   );
 };

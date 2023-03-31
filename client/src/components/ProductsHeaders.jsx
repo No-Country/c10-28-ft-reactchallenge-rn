@@ -13,10 +13,10 @@ import start from "../../assets/start.png";
 
 const ProductsHeaders = () => {
   return (
-    <View className="flex flex-row gap-4 px-5 absolute top-5 ">
+    <View className="flex flex-row gap-4 px-5 mb-10  ">
       <View className="flex justify-center items-start">
         <View className=" px-4 py-5 rounded-full bg-slate-300 border-purple-400 border-8">
-          <Icon name="person-outline" size={83} className="mx-2" />
+          <Icon name="person-outline" size={40} className="mx-2" />
         </View>
       </View>
       <View>
