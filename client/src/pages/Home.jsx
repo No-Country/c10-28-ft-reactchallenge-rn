@@ -6,32 +6,26 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Menu from "../components/Menu";
 import Botons from "../components/Botons";
 
-
 const Home = () => {
   return (
     <>
-    
-    <View className="flex-1 " style={{ backgroundColor: "#EAE0F4" }}>
-    
-   
-    
-      <Cabecera />
-      <ScrollView className="flex-1 my-3 ">
-        <View className="flex-1 ">
-          <View>
-            <Text className=" font-black "> Productos </Text>
-            <Carrousel />
+      <View className="flex-1 " style={{ backgroundColor: "#EAE0F4" }}>
+        <Cabecera />
+        <ScrollView className="flex-1 my-3 ">
+          <View className="flex-1 ">
+            <View>
+              <Text className=" font-black "> Productos </Text>
+              <Carrousel />
+            </View>
+            <View>
+              <Text className=" font-black "> Servicios </Text>
+              <Carrousel />
+            </View>
           </View>
-          <View>
-            <Text className=" font-black "> Servicios </Text>
-            <Carrousel />
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+        </ScrollView>
+      </View>
     </>
   );
 };
-
 
 export default Home;
