@@ -41,7 +41,7 @@ const Carrousel = () => {
 
   const navegar = () => {
     navigation.navigate("Lista");
-    console.log("navegacion");
+  
   };
 
   return (
