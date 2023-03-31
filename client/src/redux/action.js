@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_POST, ERROR } from "./constants";
+import { GET_ALL_POST, ERROR, GET_SEARCH } from "./constants";
 
 export const getPost = () => {
   return async (dispatch) => {
@@ -19,3 +19,20 @@ export const getPost = () => {
     }
   };
 };
+
+export const searchBar = (data) => {
+  return async (dispatch) => {
+    try {
+      const search = await axios.get(`https://cambialoapi-production.up.railway.app/posts?search=${data}`)
+      return dispatch({
+        type: GET_SEARCH,
+        payload: search.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: ERROR,
+        payload: error,
+      });
+    }
+  }
+}
