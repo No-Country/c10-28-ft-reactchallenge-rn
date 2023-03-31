@@ -41,27 +41,26 @@ export class PostsService {
 
       if (Object.keys(queries).length > 0) {
 
+        const searchQueries = {
+          tipo: queries.tipo,
+          categoria: queries.categoria,
+          vendedor_id: queries.vendedor,
+          venta: queries.venta === "true" ? true : null,
+          trueque: queries.trueque === "true" ? true : null
+        }
+
         if (queries.hasOwnProperty("search")) {
 
+          const currentSearch = { ...searchQueries, titulo: ILike(`%${queries.search}%`) };
+
           return await this.postsRepository.find({
-            where: {
-              tipo: queries.tipo,
-              categoria: queries.categoria,
-              vendedor_id: queries.vendedor,
-              titulo: ILike(`%${queries.search}%`),
-              venta: queries.venta === "true" ? true : null
-            }
+            where: currentSearch
           });
 
         } else {
 
           return await this.postsRepository.find({
-            where: {
-              tipo: queries.tipo,
-              categoria: queries.categoria,
-              vendedor_id: queries.vendedor,
-              venta: queries.venta === "true" ? true : null
-            }
+            where: searchQueries
           });
 
         }
