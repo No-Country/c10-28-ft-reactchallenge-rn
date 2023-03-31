@@ -23,51 +23,15 @@ const Navegacion = () => {
         component={Home}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Lista"
-        component={ListaItems}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="cards"
-        component={CardItems}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Detalles"
-        component={Detalles}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Menu"
-        component={Menu}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Perfil"
-        component={MiPerfil}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Acercade"
-        component={Acercade}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Contacto"
-        component={Contacto}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Registro"
-        component={Registro}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Lista" component={ListaItems} />
+      <Stack.Screen name="cards" component={CardItems} />
+      <Stack.Screen name="Detalles" component={Detalles} />
+      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen name="Perfil" component={MiPerfil} />
+      <Stack.Screen name="Acercade" component={Acercade} />
+      <Stack.Screen name="Contacto" component={Contacto} />
+      <Stack.Screen name="Registro" component={Registro} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };
