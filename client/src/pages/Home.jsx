@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import Cabecera from "../components/Cabecera";
 import Carrousel from "../components/Carrousel";
 import { ScrollView } from "react-native-gesture-handler";
-import Login from "../components/Login";
+import Welcome from "./Welcome";
 
 
 const Home = () => {
   return (
-    <Login/>
+    <Welcome />
     // <View className="flex-1 " style={{ backgroundColor: "#EAE0F4" }}>
     //   <Cabecera />
     //   <ScrollView className="flex-1 my-3 ">

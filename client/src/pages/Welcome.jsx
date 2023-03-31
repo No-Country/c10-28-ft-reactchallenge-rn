@@ -20,7 +20,7 @@ const Welcome = () => {
       navigation.navigate("Login");
     };
     return (
-      <View style={styles.fondo}>
+      <View className="h-full" style={styles.fondo}>
         <View
           style={[styles.principalColor, styles.height]}
           className="w-full relative">
@@ -80,13 +80,7 @@ const styles = StyleSheet.create({
     color: "#3d2851",
   },
   height: {
-    height: "43%",
+    height: "42%",
   },
-  chatView: {
-    position: "absolute",
-    top: "6%",
-    left: "6%",
-    width: "87%",
-    height: "90%",
-  },
+  
 });
