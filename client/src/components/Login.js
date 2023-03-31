@@ -26,19 +26,19 @@ const Login = () => {
   const navega = () => {
     navigation.navigate("Registro");
   };
-  
-  return (
 
-    
+  return (
     <View style={styles.container}>
-      <View style={styles.hero}></View>
-      <Text style={styles.title}>Iniciar Sesion</Text>
-      <Image
-        style={styles.logo}
-        source={require("../images/logo.png")}
-      />
-      <View style={styles.form}>
-        <TextInput 
+      <View
+        style={styles.hero}
+        className="flex justify-start items-center rounded-b-full w-full">
+        <Text style={styles.title}>Iniciar Sesion</Text>
+      </View>
+      <View>
+        <Image style={styles.logo} source={require("../images/logo.png")} />
+      </View>
+      <View className="w-11/12">
+        <TextInput
           style={styles.input}
           onChangeText={setEmail}
           value={email}
@@ -51,14 +51,16 @@ const Login = () => {
           placeholder="Contraseña"
           secureTextEntry
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Ingresar</Text>
+        <TouchableOpacity
+          style={styles.principalColor}
+          className="w-full p-4 rounded-full mt-8 flex justify-center items-center shadow-2xl shadow-black">
+          <Text className="text-slate-50  font-bold  text-xl"> Ingresar</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.register}>
         <Text style={styles.registerText}>¿No tienes cuenta?</Text>
         <TouchableOpacity onPress={() => navega()}>
-          <Text   style={[styles.registerText, styles.registerButton]}>
+          <Text style={[styles.registerText, styles.registerButton]}>
             Regístrate
           </Text>
         </TouchableOpacity>
@@ -81,38 +83,31 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 150,
+    height: "18%",
     backgroundColor: "#3D2851",
-    borderBottomLeftRadius: 130,
-    borderBottomRightRadius: 130,
     zIndex: -1,
   },
   title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 20,
+    fontSize: 40,
+    // fontWeight: "bold",
+
     color: "#FFFFFF",
-    marginTop: -50,
   },
   logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: 300,
+    height: 300,
   },
-  form: {
-    width: "80%",
-  },
+
   input: {
-    height: 40,
-    margin: 12,
+    height: 60,
     borderColor: "gray",
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+    borderRadius: 7,
+    paddingHorizontal: 15,
+    marginTop: 20,
   },
   button: {
-    marginTop: 10,
+    marginTop: 20,
     backgroundColor: "#3D2851",
     borderRadius: 100,
     padding: 10,
@@ -132,6 +127,9 @@ const styles = StyleSheet.create({
   registerButton: {
     color: "purple",
     textDecorationLine: "underline",
+  },
+  principalColor: {
+    backgroundColor: "#3d2851",
   },
 });
 

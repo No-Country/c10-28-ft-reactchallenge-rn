@@ -11,7 +11,7 @@ import MiPerfil from "../pages/MiPerfil";
 import Contacto from "../pages/Contacto";
 import Login from "./Login";
 import Registro from "./Registro";
-import Login from "./Login";
+
 
 
 const Stack = createStackNavigator();
