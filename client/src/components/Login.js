@@ -26,6 +26,7 @@ const Login = () => {
   const navega = () => {
     navigation.navigate("Registro");
   };
+  
   return (
 
     

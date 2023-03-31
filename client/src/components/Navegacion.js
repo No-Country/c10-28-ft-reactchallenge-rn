@@ -10,6 +10,7 @@ import Acercade from "../pages/Acercade";
 import MiPerfil from "../pages/MiPerfil";
 import Contacto from "../pages/Contacto";
 import Registro from "./Registro";
+import Login from "./Login";
 
 
 const Stack = createStackNavigator();
@@ -17,7 +18,11 @@ const Stack = createStackNavigator();
 const Navegacion = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Lista" component={ListaItems} />
       <Stack.Screen name="cards" component={CardItems} />
       <Stack.Screen name="Detalles" component={Detalles} />
@@ -26,6 +31,7 @@ const Navegacion = () => {
       <Stack.Screen name="Acercade" component={Acercade} />
       <Stack.Screen name="Contacto" component={Contacto} />
       <Stack.Screen name="Registro" component={Registro} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };
