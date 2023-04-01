@@ -10,7 +10,7 @@ import React from "react";
 import DetailsImage from "./DetailsImage";
 
 const PostDetail = ({ data }) => {
-  console.log("infoo", data);
+
   return (
     <View
       style={{
