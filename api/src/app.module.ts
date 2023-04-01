@@ -5,14 +5,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Post } from './posts/entities/post.entity';
 import { PostsModule } from './posts/posts.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
     type: "postgres",
     url: process.env.DATABASE_URL,
-    entities: [Post],
+    entities: [Post, User],
     synchronize: true
-  }), PostsModule],
+  }), PostsModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
