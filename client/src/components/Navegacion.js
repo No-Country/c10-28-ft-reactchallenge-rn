@@ -11,6 +11,7 @@ import MiPerfil from "../pages/MiPerfil";
 import Contacto from "../pages/Contacto";
 import Login from "./Login";
 import Registro from "./Registro";
+import Productos from "../pages/Productos";
 
 
 
@@ -40,6 +41,11 @@ const Navegacion = () => {
       <Stack.Screen
         name="Lista"
         component={ListaItems}
+        
+      />
+      <Stack.Screen
+        name="Productos"
+        component={Productos}
         
       />
       <Stack.Screen
