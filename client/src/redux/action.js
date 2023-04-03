@@ -4,17 +4,17 @@ import { GET_ALL_POST, ERROR, GET_SEARCH, SET_LOADING } from "./constants";
 export const getPost = () => {
   return async (dispatch) => {
     try {
-      dispatch({ type: SET_LOADING, payload: true }); 
+      dispatch({ type: SET_LOADING, payload: true });
       const response = await axios.get(
         `https://cambialoapi-production.up.railway.app/posts`
       );
-      dispatch({ type: SET_LOADING, payload: false }); 
+      dispatch({ type: SET_LOADING, payload: false });
       return dispatch({
         type: GET_ALL_POST,
         payload: response.data,
       });
     } catch (error) {
-      dispatch({ type: SET_LOADING, payload: fale }); 
+      dispatch({ type: SET_LOADING, payload: fale });
       return dispatch({
         type: ERROR,
         payload: error,
@@ -26,21 +26,45 @@ export const getPost = () => {
 export const searchBar = (data) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: SET_LOADING, payload: true }); 
+      dispatch({ type: SET_LOADING, payload: true });
 
-      const search = await axios.get(`https://cambialoapi-production.up.railway.app/posts?search=${data}`)
-      dispatch({ type: SET_LOADING, payload: false }); 
+      const search = await axios.get(
+        `https://cambialoapi-production.up.railway.app/posts?search=${data}`
+      );
+      dispatch({ type: SET_LOADING, payload: false });
 
       return dispatch({
         type: GET_SEARCH,
-        payload: search.data
-      })
+        payload: search.data,
+      });
     } catch (error) {
-      dispatch({ type: SET_LOADING, payload: true }); 
+      dispatch({ type: SET_LOADING, payload: true });
       return dispatch({
         type: ERROR,
         payload: error,
       });
     }
-  }
-}
+  };
+};
+
+export const getCategoty = (data) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: SET_LOADING, payload: true });
+
+      const response = await axios.get(
+        `https://cambialoapi-production.up.railway.app/posts?categoria=${data}`
+      );
+      return dispatch({
+        type: GET_CATEGORY_FILTER,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({ type: SET_LOADING, payload: true });
+      return dispatch({
+        type: ERROR,
+        payload: error,
+      });
+    }
+  };
+};
