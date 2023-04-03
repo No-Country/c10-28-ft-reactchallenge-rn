@@ -35,15 +35,19 @@ const Menu = ({ children }) => {
   useFocusEffect(
     React.useCallback(() => {
       const unsubscribe = navigation.addListener('state', (event) => {
-        const ind = event.data.state.index
+        const ind = event.data.state?.index
+        console.log(ind)
         setCurrentScreen(ind)
         
       });
       
       return unsubscribe;
-    }, [])
+    }, [navigation])
     );
-  
+
+    
+    useEffect(() => {},[navigation,currentScreen])
+  console.log(currentScreen)
   const openDrawer = () => {
     drawer.current.openDrawer();
     setIsDrawerOpen(true);
@@ -103,7 +107,7 @@ const Menu = ({ children }) => {
     <>
       <View style={styles.container}>
       {
-        currentScreen !== 0 ? (
+        currentScreen !== undefined && currentScreen !== 0 ? (
           <TouchableOpacity
           style={{left: -305, paddingBottom: 5,  }}
           onPress={() => navigation.goBack()}>
