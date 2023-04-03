@@ -16,6 +16,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
+import Filtros from "./Filtros";
 
 const Menu = ({ children }) => {
  
@@ -89,6 +90,7 @@ const Menu = ({ children }) => {
           onPress={() => navigation.navigate("Contacto")}>
           <Text style={styles.text}>Contacto</Text>
         </TouchableOpacity>
+        <Filtros />
       </View>
       <View style={{ left: "30%" }} className="absolute bottom-20">
         <TouchableOpacity

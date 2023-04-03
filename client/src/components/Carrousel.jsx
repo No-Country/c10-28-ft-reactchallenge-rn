@@ -5,8 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 
 const RenderItem = ({ item, navegar }) => {
   return (
-    <View className="justify-center, align-middle bg-white p-3 rounded-lg ">
-      <Image className="w-14, h-28 rounded-lg " source={{ uri: item.uri }} />
+    <View className="justify-center, w-20 h-20 items-center p-1 rounded-lg ">
+      <Image className="w-12 h-12  rounded-lg " source={{ uri: item.uri }} />
       <TouchableOpacity
         onPress={() => navegar()}
         style={{
@@ -17,7 +17,7 @@ const RenderItem = ({ item, navegar }) => {
           marginTop: 5,
           width: "100%",
         }}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+        <Text style={{ color: "white", fontSize: 10, padding:2, fontWeight: "bold" }}>
           {item.category}
         </Text>
       </TouchableOpacity>
@@ -49,7 +49,7 @@ const Carrousel = () => {
       style={{
         justifyContent: "center",
         alignItems: "center",
-        left: -80,
+        left: -140,
         borderColor: "gray",
         padding: 5,
       }}>
@@ -57,8 +57,8 @@ const Carrousel = () => {
         ref={carouselRef}
         data={data}
         renderItem={({ item }) => <RenderItem item={item} navegar={navegar} />}
-        sliderWidth={600}
-        itemWidth={180}
+        sliderWidth={640}
+        itemWidth={100}
         itemHeight={150}
         onSnapToItem={(index) => setActiveIndex(index)}
         autoplay={false}
