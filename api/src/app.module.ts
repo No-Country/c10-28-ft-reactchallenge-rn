@@ -7,14 +7,16 @@ import { Post } from './posts/entities/post.entity';
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { ReviewsModule } from './reviews/reviews.module';
+import { Review } from './reviews/entities/review.entity';
 
 @Module({
   imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
     type: "postgres",
     url: process.env.DATABASE_URL,
-    entities: [Post, User],
+    entities: [Post, User, Review],
     synchronize: true
-  }), PostsModule, UsersModule],
+  }), PostsModule, UsersModule, ReviewsModule],
   controllers: [AppController],
   providers: [AppService],
 })
