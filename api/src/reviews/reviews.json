@@ -1,0 +1,98 @@
+[
+    {
+        "valoracion_id":1,
+        "usuario_valorado":1,
+        "usuario_calificador":2,
+        "calificacion":5,
+        "comentario": "Non quas voluptas dolorem sit quae nobis harum.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":2,
+        "usuario_valorado":1,
+        "usuario_calificador":3,
+        "calificacion":4,
+        "comentario": "Facere nihil recusandae et et libero tempora voluptatum molestiae.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":3,
+        "usuario_valorado":1,
+        "usuario_calificador":4,
+        "calificacion":3,
+        "comentario": "Quia quasi doloremque et dolores ipsum.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":4,
+        "usuario_valorado":2,
+        "usuario_calificador":3,
+        "calificacion":2,
+        "comentario": "Et quo est distinctio accusantium eos.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":5,
+        "usuario_valorado":2,
+        "usuario_calificador":4,
+        "calificacion":1,
+        "comentario": "Eaque autem voluptatem recusandae porro atque odio nostrum exercitationem.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":6,
+        "usuario_valorado":2,
+        "usuario_calificador":5,
+        "calificacion":2,
+        "comentario": "Unde molestiae assumenda voluptatem dolores dolorem aut.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":7,
+        "usuario_valorado":3,
+        "usuario_calificador":4,
+        "calificacion":3,
+        "comentario": "Similique fugiat saepe.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":8,
+        "usuario_valorado":3,
+        "usuario_calificador":5,
+        "calificacion":4,
+        "comentario": "Illum aperiam recusandae vel numquam.",
+        "fecha_creacion": "2023-03-31"
+    },
+        {
+        "valoracion_id":9,
+        "usuario_valorado":3,
+        "usuario_calificador":6,
+        "calificacion":5,
+        "comentario": "Dolorem at quibusdam ratione earum dicta culpa neque architecto.",
+        "fecha_creacion": "2023-03-31"
+    },
+    {
+        "valoracion_id":10,
+        "usuario_valorado":4,
+        "usuario_calificador":5,
+        "calificacion":4,
+        "comentario": "In quos quis qui magnam at.",
+        "fecha_creacion": "2023-03-31"
+    },
+    {
+        "valoracion_id":11,
+        "usuario_valorado":4,
+        "usuario_calificador":6,
+        "calificacion":3,
+        "comentario": "Quo temporibus libero aut porro atque nesciunt vitae cumque.",
+        "fecha_creacion": "2023-03-31"
+    },
+    {
+        "valoracion_id":12,
+        "usuario_valorado":4,
+        "usuario_calificador":7,
+        "calificacion":2,
+        "comentario": "Ut omnis aut quo pariatur nesciunt sunt reprehenderit ut qui.",
+        "fecha_creacion": "2023-03-31"
+    }
+]
