@@ -4,7 +4,13 @@ const initialState = {
   loading: true,
   user: {},
 };
-import { ERROR, GET_ALL_POST, GET_SEARCH, SET_LOADING } from "./constants";
+import {
+  ERROR,
+  GET_ALL_POST,
+  GET_SEARCH,
+  SET_LOADING,
+  GET_CATEGORY_FILTER,
+} from "./constants";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,14 +18,23 @@ const reducer = (state = initialState, action) => {
       return {
         posts: action.payload,
       };
-      case SET_LOADING:
-        return {
-          loading: action.payload
-        };
-      case GET_SEARCH:
-        return {
-          posts: action.payload
-        };
+    case SET_LOADING:
+      return {
+        loading: action.payload,
+      };
+    case GET_SEARCH:
+      return {
+        posts: action.payload,
+      };
+    case GET_CATEGORY_FILTER:
+      const categoryFilter =
+        action.payload === "categoria"
+          ? state.posts.filter((post) => post.categoria)
+          : state.posts.filter((post) => !post.categoria);
+      return {
+        ...state,
+        posts: action.payload === "todos" ? state.posts : categoryFilter,
+      };
     case ERROR:
       return {
         error: action.payload,
