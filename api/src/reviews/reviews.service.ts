@@ -38,9 +38,13 @@ export class ReviewsService {
   //   return 'This action adds a new review';
   // }
 
-  async findAll() {
+  async findAll(queries) {
 
-    return await this.reviewsRepository.find();
+    return await this.reviewsRepository.find({
+      where: {
+        usuario_valorado: queries.usuario
+      }
+    });
 
   }
 
