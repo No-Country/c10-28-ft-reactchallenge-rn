@@ -13,7 +13,7 @@ const Productos = () => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts);
   const loading = useSelector((state) => state.loading);
-console.log('loading...',loading)
+
   useEffect(() => {
     dispatch(getPost());
   }, [dispatch]);
