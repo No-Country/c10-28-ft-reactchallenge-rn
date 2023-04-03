@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, Children } from "react";
 import Acercade from "../pages/Acercade";
 import Contacto from "../pages/Contacto";
 import MiPerfil from "../pages/MiPerfil";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Logo from "../image/MenuHamburguesa.png";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -18,6 +18,7 @@ import {
 } from "react-native";
 
 const Menu = ({ children }) => {
+ 
   const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("right");
   // const changeDrawerPosition = () => {
@@ -30,7 +31,23 @@ const Menu = ({ children }) => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigation = useNavigation();
+  const [currentScreen, setCurrentScreen] = useState(0)
+  useFocusEffect(
+    React.useCallback(() => {
+      const unsubscribe = navigation.addListener('state', (event) => {
+        const ind = event.data.state?.index
+        console.log(ind)
+        setCurrentScreen(ind)
+        
+      });
+      
+      return unsubscribe;
+    }, [navigation])
+    );
 
+    
+    useEffect(() => {},[navigation,currentScreen])
+  console.log(currentScreen)
   const openDrawer = () => {
     drawer.current.openDrawer();
     setIsDrawerOpen(true);
@@ -89,6 +106,19 @@ const Menu = ({ children }) => {
   return (
     <>
       <View style={styles.container}>
+      {
+        currentScreen !== undefined && currentScreen !== 0 ? (
+          <TouchableOpacity
+          style={{left: -305, paddingBottom: 5,  }}
+          onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back" size={35} color="#fff" />
+        </TouchableOpacity>
+        )
+        :
+        ''
+      }        
+
+      
         <TouchableOpacity
           style={{ marginRight: 15, paddingBottom: 5 }}
           onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
@@ -117,7 +147,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#3D2851",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-
+    flexDirection: 'row',
+    width: '100%',
     height: "10%",
   },
 
