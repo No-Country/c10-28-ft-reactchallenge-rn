@@ -20,7 +20,7 @@ const Home = () => {
       <View className="flex-1 h-full " style={{ backgroundColor: "#EAE0F4" }}>
         <Cabecera />
         
-          <View className="flex-1 mb-24 ">
+          <View className="flex-1  ">
             <View>
               <Text className=" font-black "> Productos </Text>
               <Carrousel />
@@ -30,7 +30,7 @@ const Home = () => {
               <Carrousel />
             </View>
           </View>
-          <View className="flex-1 mt-24 " > 
+          <View className="flex-1 " > 
           <ListaItems data={data} />
           </View>
     
