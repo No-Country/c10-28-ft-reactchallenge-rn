@@ -14,19 +14,29 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>) { }
 
-  // create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
 
-  // const user = this.usersRepository.create({
-  //   email: element.email,
-  //   password: element.contraseña,
-  //   nombre_completo: element.nombre_completo,
-  //   foto_perfil: element.foto_perfil,
-  //   direccion: element.dirección,
-  //   telefono: element.teléfono,
-  // });
+    try {
 
-  //   return 'This action adds a new user';
-  // }
+      const user = this.usersRepository.create({
+        email: createUserDto.email,
+        password: createUserDto.password,
+        nombre_completo: createUserDto.nombre_completo,
+        foto_perfil: createUserDto.foto_perfil,
+        direccion: createUserDto.direccion,
+        telefono: createUserDto.telefono,
+      });
+
+      return await this.usersRepository.save(user);
+
+
+    } catch (error) {
+
+      return error
+
+    }
+
+  }
 
   async findAll(): Promise<User[]> {
 
