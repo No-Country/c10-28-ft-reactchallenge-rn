@@ -14,15 +14,10 @@ import Registro from "./Registro";
 import Productos from "../pages/Productos";
 import Cabecera from "./Cabecera";
 
-
-
 const Stack = createStackNavigator();
 
 const Navegacion = () => {
-
-
   return (
-
     <>
     <Menu>
       <Cabecera />

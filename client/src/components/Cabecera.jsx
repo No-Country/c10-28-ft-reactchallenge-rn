@@ -10,7 +10,6 @@ const Cabecera = () => {
       style={{ backgroundColor: "#3D2851" }}
       className="rounded-b-full h-40 justify-center items-center ">
       <Image className="w-28 h-28 " source={Logo} />
-      <SearchBar />
     </View>
     </View>
   );

@@ -3,7 +3,6 @@ import Acercade from "../pages/Acercade";
 import Contacto from "../pages/Contacto";
 import MiPerfil from "../pages/MiPerfil";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import Logo from "../image/MenuHamburguesa.png";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import {
@@ -19,7 +18,6 @@ import {
 import Filtros from "./Filtros";
 
 const Menu = ({ children }) => {
- 
   const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("right");
   // const changeDrawerPosition = () => {
@@ -32,23 +30,21 @@ const Menu = ({ children }) => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigation = useNavigation();
-  const [currentScreen, setCurrentScreen] = useState(0)
+  const [currentScreen, setCurrentScreen] = useState(0);
   useFocusEffect(
     React.useCallback(() => {
-      const unsubscribe = navigation.addListener('state', (event) => {
-        const ind = event.data.state?.index
-        console.log(ind)
-        setCurrentScreen(ind)
-        
+      const unsubscribe = navigation.addListener("state", (event) => {
+        const ind = event.data.state?.index;
+        console.log(ind);
+        setCurrentScreen(ind);
       });
-      
+
       return unsubscribe;
     }, [navigation])
-    );
+  );
 
-    
-    useEffect(() => {},[navigation,currentScreen])
-  console.log(currentScreen)
+  useEffect(() => {}, [navigation, currentScreen]);
+  console.log(currentScreen);
   const openDrawer = () => {
     drawer.current.openDrawer();
     setIsDrawerOpen(true);
@@ -73,7 +69,7 @@ const Menu = ({ children }) => {
 
   const NavigationView = () => (
     <View className="bg-slate-200 flex-1 relative  ">
-      <Image source={require("../image/logo.png")} style={styles.image} />
+      <Image source={require("../images/logo.png")} style={styles.image} />
       <View style={{ backgroundColor: "#3D2851" }} className="p-5">
         <TouchableOpacity
           style={styles.button}
@@ -90,7 +86,9 @@ const Menu = ({ children }) => {
           onPress={() => navigation.navigate("Contacto")}>
           <Text style={styles.text}>Contacto</Text>
         </TouchableOpacity>
-        <Filtros />
+        <View style={styles.button}>
+          <Filtros />
+        </View>
       </View>
       <View style={{ left: "30%" }} className="absolute bottom-20">
         <TouchableOpacity
@@ -107,20 +105,17 @@ const Menu = ({ children }) => {
 
   return (
     <>
-      <View style={styles.container}>
-      {
-        currentScreen !== undefined && currentScreen !== 0 ? (
+      <View className="relative" style={styles.container}>
+        {currentScreen !== undefined && currentScreen !== 0 ? (
           <TouchableOpacity
-          style={{left: -305, paddingBottom: 5,  }}
-          onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back" size={35} color="#fff" />
-        </TouchableOpacity>
-        )
-        :
-        ''
-      }        
+            className="absolute top-10 left-5"
+            onPress={() => navigation.goBack()}>
+            <Icon name="arrow-back" size={35} color="#fff" />
+          </TouchableOpacity>
+        ) : (
+          ""
+        )}
 
-      
         <TouchableOpacity
           style={{ marginRight: 15, paddingBottom: 5 }}
           onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
@@ -149,8 +144,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#3D2851",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    flexDirection: 'row',
-    width: '100%',
+    flexDirection: "row",
+    width: "100%",
     height: "10%",
   },
 

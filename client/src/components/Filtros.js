@@ -10,15 +10,14 @@ const Filtros = () => {
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
   const [selectedValue, setSelectedValue] = useState('todos');
 
-  const [filtro,setFiltro] = useState({
+  
+  const [filtro, setFiltro] = useState({
     venta: false,
     trueque: false,
-    categoria: '',
-    prodictos: '',
-    servicos: '',
-
-
-  })
+    categoria: "",
+    prodictos: "",
+    servicos: "",
+  });
 
   const category = [
     {title: 'juguetes'},
@@ -39,10 +38,10 @@ const Filtros = () => {
 
   const handleMostrarFiltros = () => {
     setMostrarFiltros(!mostrarFiltros);
-  }
+  };
 
   return (
-    <View className="items-center  " >  
+    <View className="items-center  ">
       <TouchableOpacity onPress={handleMostrarFiltros}>
         <Text className="text-white">Mostrar filtros</Text>
       </TouchableOpacity>
@@ -50,15 +49,21 @@ const Filtros = () => {
       {mostrarFiltros && (
         // Aquí va el contenido de los filtros
         <View>
-            <View className="flex-row items-center w-2/4 justify-around " >
-
-          <Text className="text-white">Venta</Text>
-          <Switch value={filtro.venta} onValueChange={(value) => setFiltro({ ...filtro, venta: value })} />
-
-            </View>
-            <View className="flex-row items-center w-2/4 justify-around " >
-          <Text className="text-white" >trueque</Text>
-          <Switch value={filtro.trueque} onValueChange={(value) => setFiltro({ ...filtro, trueque: value })} />
+          <View className="flex-row items-center w-2/4 mt-2 justify-around ">
+            <Text className="text-white">Venta</Text>
+            <Switch
+              value={filtro.venta}
+              onValueChange={(value) => setFiltro({ ...filtro, venta: value })}
+            />
+          </View>
+          <View className="flex-row items-center w-2/4 justify-around ">
+            <Text className="text-white">trueque</Text>
+            <Switch
+              value={filtro.trueque}
+              onValueChange={(value) =>
+                setFiltro({ ...filtro, trueque: value })
+              }
+            />
           </View>
 
           <Text>Selecciona una categoría:</Text>
@@ -76,11 +81,14 @@ const Filtros = () => {
             <Text className=" text-white font-black  justify-center items-center " >
                 Aplicar
                 </Text>
+          {/* <Text className="text-white">Filtro 3</Text> */}
+
+        
           </TouchableOpacity>
         </View>
       )}
     </View>
   );
-}
+};
 
 export default Filtros;
