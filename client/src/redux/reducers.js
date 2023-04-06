@@ -1,7 +1,9 @@
 const initialState = {
   posts: [],
+  postUser: [],
+  postsFiltrados: [],
   error: {},
-  loading: true,
+  loading: false,
   user: {},
 };
 import {
@@ -10,33 +12,45 @@ import {
   GET_SEARCH,
   SET_LOADING,
   GET_CATEGORY_FILTER,
+  FILTER_BY_VENTAS,
+  PRODUCT_USER,
 } from "./constants";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_POST:
       return {
+        ...state,
         posts: action.payload,
       };
     case SET_LOADING:
       return {
+        ...state,
         loading: action.payload,
       };
     case GET_SEARCH:
       return {
-        posts: action.payload,
+        ...state,
+        postsFiltrados: action.payload,
       };
     case GET_CATEGORY_FILTER:
-      const categoryFilter =
-        action.payload === "categoria"
-          ? state.posts.filter((post) => post.categoria)
-          : state.posts.filter((post) => !post.categoria);
       return {
         ...state,
-        posts: action.payload === "todos" ? state.posts : categoryFilter,
+        postsFiltrados: action.payload,
       };
+      case FILTER_BY_VENTAS:
+        return {
+          ...state,
+          postsFiltrados: action.payload
+        };
+        case PRODUCT_USER:
+          return {
+            ...state,
+            postUser: action.payload
+          }
     case ERROR:
       return {
+        ...state,
         error: action.payload,
       };
     default:

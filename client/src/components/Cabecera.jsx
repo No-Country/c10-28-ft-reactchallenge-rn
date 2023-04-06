@@ -5,10 +5,12 @@ import SearchBar from "./SearchBar";
 
 const Cabecera = () => {
   return (
+    <View style={{ backgroundColor: "#EAE0F4", paddingBottom: 5 }}>
     <View
       style={{ backgroundColor: "#3D2851" }}
       className="rounded-b-full h-40 justify-center items-center ">
       <Image className="w-28 h-28 " source={Logo} />
+    </View>
     </View>
   );
 };

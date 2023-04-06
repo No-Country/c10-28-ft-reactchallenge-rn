@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { View, TouchableOpacity, Text, Switch } from "react-native";
+import { useState } from 'react';
+import { View, TouchableOpacity, Text, Switch } from 'react-native';
+import {filterVentas} from '../redux/action';
+import {useDispatch} from 'react-redux';
+import { Picker } from '@react-native-picker/picker';
+
 
 const Filtros = () => {
+    const dispatch = useDispatch()
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('todos');
+
+  
   const [filtro, setFiltro] = useState({
     venta: false,
     trueque: false,
@@ -10,6 +18,23 @@ const Filtros = () => {
     prodictos: "",
     servicos: "",
   });
+
+  const category = [
+    {title: 'juguetes'},
+    {title: 'herramientas'},
+    {title: 'informatica'},
+    {title: 'electrodomesticos'},
+    {title: 'cuidado personal'},
+    {title: 'deportes'},
+    {title: 'rodados'},
+    {title: 'hogar y construccion'},
+    {title: 'indumentaria'},
+    
+  ]
+
+  const applyFilters = () =>{
+    filtro.venta ? dispatch(filterVentas(filtro.venta)) : null
+  }
 
   const handleMostrarFiltros = () => {
     setMostrarFiltros(!mostrarFiltros);
@@ -41,12 +66,24 @@ const Filtros = () => {
             />
           </View>
 
+          <Text>Selecciona una categoría:</Text>
+      <Picker
+        selectedValue={selectedValue}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+        {
+            category.map(c => (
+            <Picker.Item key={c.title} label={c.title} value={c.title} />
+            ))
+        }
+      </Picker>
+          <TouchableOpacity  onPress={() => applyFilters()} className=" justify-center items-center "  >
+            <Text className=" text-white font-black  justify-center items-center " >
+                Aplicar
+                </Text>
           {/* <Text className="text-white">Filtro 3</Text> */}
 
-          <TouchableOpacity className=" justify-center items-center   ">
-            <Text className=" text-white font-black mt-3 border-2 border-purple-300 p-2 rounded-full  text-center ">
-              Aplicar
-            </Text>
+        
           </TouchableOpacity>
         </View>
       )}
