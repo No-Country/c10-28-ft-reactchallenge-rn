@@ -8,15 +8,20 @@ import { User } from './entities/user.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  // @Post()
-  // create(@Body() createUserDto: CreateUserDto) {
-  //   return this.usersService.create(createUserDto);
-  // }
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
+  }
 
   @Get()
   async findAll(): Promise<User[]> {
     return await this.usersService.findAll();
   }
+
+  // @Get(':email')
+  // findOne(@Param('email') email: string) {
+  //   return this.usersService.findOne(email);
+  // }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {

@@ -9,14 +9,15 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { ReviewsModule } from './reviews/reviews.module';
 import { Review } from './reviews/entities/review.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
+  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRoot({
     type: "postgres",
     url: process.env.DATABASE_URL,
     entities: [Post, User, Review],
     synchronize: true
-  }), PostsModule, UsersModule, ReviewsModule],
+  }), PostsModule, UsersModule, ReviewsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
