@@ -3,12 +3,14 @@ import { TextInput, Pressable, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import {useDispatch } from "react-redux";
 import {searchBar} from "../redux/action";
+import { useNavigation } from "@react-navigation/native";
 
 const SearchBar = ({ onChangeText }) => {
   
   const [searchText, setSearchText] = useState("");
   const searchInputRef = useRef(null);
   const dispatch = useDispatch()
+  const navigation = useNavigation()
   const handleOnChangeText = (text) => {
     setSearchText(text);
   };
@@ -19,7 +21,8 @@ const SearchBar = ({ onChangeText }) => {
 
   const search = () => {
     dispatch(searchBar(searchText))
-    setSearchText("")
+    
+    navigation.navigate('Productos')
   }
 
   return (

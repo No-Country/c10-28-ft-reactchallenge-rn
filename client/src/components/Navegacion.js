@@ -12,6 +12,7 @@ import Contacto from "../pages/Contacto";
 import Login from "./Login";
 import Registro from "./Registro";
 import Productos from "../pages/Productos";
+import Cabecera from "./Cabecera";
 
 
 
@@ -24,6 +25,7 @@ const Navegacion = () => {
 
     <>
     <Menu>
+      <Cabecera />
     <Stack.Navigator
      screenOptions={{ headerShown: false }}
     >
