@@ -11,12 +11,12 @@ import Icon from "react-native-vector-icons/Ionicons";
 import addHeart from "../../assets/Vector.png";
 import start from "../../assets/start.png";
 
-const ProductsHeaders = () => {
+const ProductsHeaders = ({}) => {
   return (
-    <View className="flex flex-row gap-4 px-5 mb-10  ">
+    <View className="flex flex-row  justify-evenly">
       <View className="flex justify-center items-start">
         <View className=" px-4 py-5 rounded-full bg-slate-300 border-purple-400 border-8">
-          <Icon name="person-outline" size={40} className="mx-2" />
+          <Icon name="person-outline" size={65} className="mx-2" />
         </View>
       </View>
       <View>
