@@ -45,6 +45,7 @@ const Home = () => {
 
   return (
     <>
+    <Cabecera />
       <ScrollView className="flex-1 h-full " style={{ backgroundColor: "#EAE0F4", paddingTop: 5 }}>
      
           <View className="flex-1  ">

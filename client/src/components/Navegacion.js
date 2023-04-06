@@ -20,7 +20,7 @@ const Navegacion = () => {
   return (
     <>
     <Menu>
-      <Cabecera />
+     
     <Stack.Navigator
      screenOptions={{ headerShown: false }}
     >
