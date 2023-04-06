@@ -1,54 +1,35 @@
-import React, { useState } from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
-const Botons = () => {
-  const Stack = createStackNavigator();
-
+const Botons = ({ title, onPress, icon, color, bgBotton, redondo }) => {
   return (
-    <View className="h-full flex  justify-center items-center bg-slate-700">
-      <View className="flex flex-row gap-5 justify-center items-center">
-        <TouchableOpacity
-          style={styles.fondo}
-          className=" text-center p-2 rounded-lg ">
-          <Text className="text-slate-50 font-bold text-center">
-            {/* {texto} */}
-            Comprar
-            </Text>
-        </TouchableOpacity>
-
-        {/* <TouchableOpacity
-          style={styles.fondo}
-          className=" text-center p-2 rounded-lg ">
-          <Text className="text-slate-50 font-bold text-center">Trueque</Text>
-        </TouchableOpacity> */}
-      </View>
-    </View>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.button,
+        { backgroundColor: bgBotton, borderRadius: redondo },
+      ]}
+      className="px-2">
+      <Entypo name={icon} size={28} color={color ? color : "#f1f1f1"} />
+      <Text style={styles.text}> {title} </Text>
+    </TouchableOpacity>
   );
 };
 
 export default Botons;
 
-
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  button: {
+    height: 40,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  fondo: {
-    backgroundColor: "#9874BA",
-  },
-  principalColor: {
-    backgroundColor: "#3d2851",
+  text: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#f1f1f1",
+    marginLeft: 10,
   },
 });
