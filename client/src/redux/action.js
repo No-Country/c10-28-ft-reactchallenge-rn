@@ -14,7 +14,7 @@ export const getPost = () => {
         payload: response.data,
       });
     } catch (error) {
-      dispatch({ type: SET_LOADING, payload: fale });
+      dispatch({ type: SET_LOADING, payload: false });
       return dispatch({
         type: ERROR,
         payload: error,

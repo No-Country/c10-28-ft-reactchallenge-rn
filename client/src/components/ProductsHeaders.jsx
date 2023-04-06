@@ -8,36 +8,106 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import addHeart from "../../assets/Vector.png";
-import start from "../../assets/start.png";
+import logo from "../images/mujer.png";
+import Botons from "./Botons";
 
-const ProductsHeaders = ({}) => {
+const ProductsHeaders = ({ img, name, direccion }) => {
+  const [like, setLike] = useState(true);
+  const [star, setStar] = useState(true);
+  const [star2, setStar2] = useState(true);
+  const [star3, setStar3] = useState(true);
+  const [star4, setStar4] = useState(true);
+  const [star5, setStar5] = useState(true);
+
+  const likeHeart = () => {
+    setLike(!like);
+  };
+
+  const star1f = () => {
+    setStar(!star);
+  };
+
+  const star2f = () => {
+    setStar2(!star2);
+    setStar(!star);
+  };
+  const star3f = () => {
+    setStar3(!star3);
+    setStar2(!star2);
+    setStar(!star);
+  };
+  const star4f = () => {
+    setStar4(!star4);
+    setStar3(!star3);
+    setStar2(!star2);
+    setStar(!star);
+  };
+  const star5f = () => {
+    setStar5(!star5);
+    setStar4(!star4);
+    setStar3(!star3);
+    setStar2(!star2);
+    setStar(!star);
+  };
+
   return (
-    <View className="flex flex-row  justify-evenly">
-      <View className="flex justify-center items-start">
-        <View className=" px-4 py-5 rounded-full bg-slate-300 border-purple-400 border-8">
-          <Icon name="person-outline" size={65} className="mx-2" />
+    <View className="flex flex-row  justify-evenly items-center ">
+      <View className="">
+        <View className=" rounded-full overflow-hidden bg-purple-800  border-purple-400 border-8">
+          <Image style={{ height: 100, width: 100 }} source={logo} />
         </View>
       </View>
       <View>
-        <View className="flex items-end mb-2 mx-7">
-          <Image source={addHeart} />
+        <View className="flex items-end ">
+          <Botons
+            icon={"heart"}
+            color={like ? "#f1f1f1" : "red"}
+            size={28}
+            onPress={likeHeart}
+          />
         </View>
-        <View className="flex flex-row  gap-2">
-          <Image source={start} />
-          <Image source={start} />
-          <Image source={start} />
-          <Image source={start} />
-          <Image source={start} />
+        <View className="flex flex-row ml-2 ">
+          <Botons
+            icon={"star"}
+            color={star ? "#f1f1f1" : "yellow"}
+            size={28}
+            onPress={star1f}
+          />
+          <Botons
+            icon={"star"}
+            color={star2 ? "#f1f1f1" : "yellow"}
+            size={28}
+            onPress={star2f}
+          />
+          <Botons
+            icon={"star"}
+            color={star3 ? "#f1f1f1" : "yellow"}
+            size={28}
+            onPress={star3f}
+          />
+          <Botons
+            icon={"star"}
+            color={star4 ? "#f1f1f1" : "yellow"}
+            size={28}
+            onPress={star4f}
+          />
+          <Botons
+            icon={"star"}
+            color={star5 ? "#f1f1f1" : "yellow"}
+            size={28}
+            onPress={star5f}
+          />
         </View>
-        <Text className="font-bold text-lg mt-3 text-zinc-100 ">
-          {" "}
-          Martina Almiron{" "}
-        </Text>
-        <Text className="text-base text-zinc-100">
-          {" "}
-          Buenos Aires, La Plata{" "}
-        </Text>
+        <View className="flex items-end ">
+          <Text className="font-bold text-lg -mt-4  text-zinc-100 ">
+            {name}
+            Martina Almiron
+          </Text>
+          <Text className="text-base text-zinc-100">
+            {direccion}
+            Buenos Aires, La Plata
+          </Text>
+        </View>
       </View>
     </View>
   );
