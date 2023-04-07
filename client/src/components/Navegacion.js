@@ -13,76 +13,31 @@ import Login from "./Login";
 import Registro from "./Registro";
 import Productos from "../pages/Productos";
 import Cabecera from "./Cabecera";
+import Publicar from "./Publicar";
+import Camara from "./Camara";
 
 const Stack = createStackNavigator();
 
 const Navegacion = () => {
   return (
     <>
-    <Menu>
-     
-    <Stack.Navigator
-     screenOptions={{ headerShown: false }}
-    >
-     
-      <Stack.Screen
-        name="Home"
-        component={Home}
-       
-      />
-      <Stack.Screen
-        name="Menu"
-        component={Menu}
-       
-      />
-      <Stack.Screen
-        name="Lista"
-        component={ListaItems}
-        
-      />
-      <Stack.Screen
-        name="Productos"
-        component={Productos}
-        
-      />
-      <Stack.Screen
-        name="cards"
-        component={CardItems}
-        
-      />
-      <Stack.Screen
-        name="Detalles"
-        component={Detalles}
-       
-      />
-      <Stack.Screen
-        name="Perfil"
-        component={MiPerfil}
-        
-      />
-      <Stack.Screen
-        name="Acercade"
-        component={Acercade}
-       
-      />
-      <Stack.Screen
-        name="Contacto"
-        component={Contacto}
-       
-      />
-      <Stack.Screen
-        name="Registro"
-        component={Registro}
-       
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        
-      />
-
-    </Stack.Navigator>
-    </Menu>
+      <Menu>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen name="Lista" component={ListaItems} />
+          <Stack.Screen name="Productos" component={Productos} />
+          <Stack.Screen name="cards" component={CardItems} />
+          <Stack.Screen name="Detalles" component={Detalles} />
+          <Stack.Screen name="Perfil" component={MiPerfil} />
+          <Stack.Screen name="Acercade" component={Acercade} />
+          <Stack.Screen name="Contacto" component={Contacto} />
+          <Stack.Screen name="Registro" component={Registro} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Publicar" component={Publicar} />
+          <Stack.Screen name="Camara" component={Camara} />
+        </Stack.Navigator>
+      </Menu>
     </>
   );
 };
