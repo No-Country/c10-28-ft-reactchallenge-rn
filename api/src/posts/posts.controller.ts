@@ -8,10 +8,10 @@ import { Post as UserPosts } from './entities/post.entity';
 export class PostsController {
   constructor(private readonly postsService: PostsService) { }
 
-  // @Post()
-  // create(@Body() createPostDto: CreatePostDto) {
-  //   return this.postsService.create(createPostDto);
-  // }
+  @Post()
+  create(@Body() createPostDto: CreatePostDto) {
+    return this.postsService.create(createPostDto);
+  }
 
   @Get()
   findAll(@Query() queries): Promise<UserPosts[]> {
