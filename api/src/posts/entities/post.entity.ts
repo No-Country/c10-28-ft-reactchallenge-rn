@@ -1,12 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/entities/user.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Post {
     @PrimaryGeneratedColumn()
     publicacion_id: number;
 
-    @Column()
-    vendedor_id: number;
+    @ManyToOne(() => User, (user) => user.user_posts)
+    vendedor_id: User;
 
     @CreateDateColumn({ type: "date" })
     fecha_creacion: string;

@@ -18,15 +18,10 @@ export class UsersController {
     return await this.usersService.findAll();
   }
 
-  // @Get(':email')
-  // findOne(@Param('email') email: string) {
-  //   return this.usersService.findOne(email);
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
+  @Get(':id')
+  findUser(@Param('id') id: string) {
+    return this.usersService.findUser(+id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
