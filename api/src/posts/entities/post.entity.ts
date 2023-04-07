@@ -21,10 +21,10 @@ export class Post {
     @Column()
     condiciones_intercambio: string;
 
-    @Column()
+    @Column({ default: true })
     trueque: boolean;
 
-    @Column()
+    @Column({ default: false })
     venta: boolean;
 
     @Column()
@@ -33,7 +33,7 @@ export class Post {
     @Column("simple-array")
     fotos: string[];
 
-    @Column()
+    @Column({ default: true })
     disponible: boolean;
 
     @Column()
