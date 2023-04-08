@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import axios from "axios";
 
 const Registro = () => {
   const [fullName, setFullName] = useState("");
@@ -14,57 +15,87 @@ const Registro = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState("");
 
-  const handleLogin = () => {
-    // Lógica para iniciar sesión
+  const registerUser = async (userData) => {
+    try {
+      const response = await axios.post(
+        "https://cambialoapi-production.up.railway.app/users",
+        userData
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleRegister = () => {
-    // Lógica para registrarse
+    const userData = {
+      nombre_completo: fullName,
+      direccion: address,
+      telefono: phone,
+      email: email,
+      password: password,
+      foto_perfil: avatar
+    };
+    registerUser(userData);
+  };
+
+  const handleLogin = () => {
+    // Lógica para iniciar sesión
   };
 
   return (
     <View style={styles.container}>
       <View
         style={styles.hero}
-        className="flex justify-start items-center rounded-b-full w-full">
+        className="flex justify-start items-center rounded-b-full w-full"
+      >
         <Text style={styles.title}>Registro</Text>
       </View>
       <View className="w-11/12">
         <TextInput
           style={styles.input}
-          onChangeText={setFullName}
+          onChangeText={(text) => setFullName(text)}
           value={fullName}
           placeholder="Nombre Completo"
         />
         <TextInput
           style={styles.input}
-          onChangeText={setAddress}
+          onChangeText={(text) => setAvatar(text)}
+          value={avatar}
+          placeholder="Foto perfil"
+        />
+
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setAddress(text)}
           value={address}
           placeholder="Direccion"
         />
         <TextInput
           style={styles.input}
-          onChangeText={setPhone}
+          onChangeText={(text) => setPhone(text)}
           value={phone}
           placeholder="Telefono"
         />
         <TextInput
           style={styles.input}
-          onChangeText={setEmail}
+          onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder="Correo electrónico"
         />
         <TextInput
           style={styles.input}
-          onChangeText={setPassword}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           placeholder="Contraseña"
           secureTextEntry
         />
         <TouchableOpacity
+          onPress={handleRegister}
           style={styles.principalColor}
-          className="w-full p-4 rounded-full mt-8 flex justify-center items-center shadow-2xl shadow-black">
+          className="w-full p-4 rounded-full mt-8 flex justify-center items-center shadow-2xl shadow-black"
+        >
           <Text className="text-slate-50  font-bold  text-xl">
             {" "}
             Registrarse
