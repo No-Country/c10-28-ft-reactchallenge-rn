@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, ActivityIndicator, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import Cabecera from "../components/Cabecera";
 import Carrousel from "../components/Carrousel";
@@ -6,9 +6,11 @@ import {useDispatch, useSelector } from "react-redux";
 import ListaItems from "../components/ListaItems";
 import {getPost} from "../redux/action";
 import {ScrollView} from "react-native-gesture-handler";
+import {useNavigation} from "@react-navigation/native";
 
 const Home = () => {
   const dispatch = useDispatch()
+  const navigation = useNavigation()
   const [venta, setVenta] = useState([])
   const [trueque, setTrueque] = useState([])
   const [servicios, setServicos] = useState([])
@@ -17,14 +19,11 @@ const Home = () => {
 
 
   const postVentas = (data) => {
-    const ventas = data.filter((item) => item.venta && !item.trueque && item.tipo === 'producto');
+    const ventas = data.filter((item) => item.venta && item.trueque && item.tipo === 'producto');
     return ventas.slice(0, 5); // Devuelve solo los primeros 5 elementos
   }
 
-  const postTrueque = (data) => {
-    const trueque = data.filter((item) => item.trueque && !item.venta && item.tipo === 'producto');
-    return trueque.slice(0, 5); // Devuelve solo los primeros 5 elementos
-  }
+ 
   const postServicios = (data) => {
     const servicio = data.filter((item) => item.tipo === 'servicio');
     return servicio.slice(0, 5); // Devuelve solo los primeros 5 elementos
@@ -35,10 +34,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getPost())
     const ventas = postVentas(data);
-    const trueques = postTrueque(data);
     const servicio = postServicios(data);
     setServicos(servicio);
-    setTrueque(trueques);
   setVenta(ventas);
   },[dispatch, data])
 
@@ -50,15 +47,15 @@ const Home = () => {
      
           <View className="flex-1  ">
             <View>
-              <Text className=" font-black "> Ventas </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('productos')} >
+              <Text className=" font-black "> Productos {">"} </Text> 
+              </TouchableOpacity>
               <Carrousel data={venta} />
             </View>
             <View>
-              <Text className=" font-black "> Treuques </Text>
-              <Carrousel data={trueque} />
-            </View>
-            <View>
-              <Text className=" font-black "> Servicios </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('productos')} >
+              <Text className=" font-black "> Productos  {">"}</Text>
+              </TouchableOpacity>
               <Carrousel data={servicios} />
             </View>
           </View>

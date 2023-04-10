@@ -16,9 +16,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Filtros from "./Filtros";
+import {useDispatch} from "react-redux";
+import {logout} from "../redux/action";
 
 const Menu = ({ children }) => {
   const drawer = useRef(null);
+  const dispatch = useDispatch()
   const [drawerPosition, setDrawerPosition] = useState("right");
   // const changeDrawerPosition = () => {
   //   if (drawerPosition === 'left') {
@@ -89,6 +92,11 @@ const Menu = ({ children }) => {
         <View style={styles.button}>
           <Filtros />
         </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => dispatch(logout())}>
+          <Text style={styles.text}>Cerrar sesion</Text>
+        </TouchableOpacity>
       </View>
       <View style={{ left: "30%" }} className="absolute bottom-20">
         <TouchableOpacity

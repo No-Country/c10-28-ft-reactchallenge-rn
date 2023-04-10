@@ -8,13 +8,20 @@ import {
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import {getLogin} from "../redux/action";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const data = {
+  username: email,
+  password: password
+}
   const handleLogin = () => {
     // Lógica para iniciar sesión
+    dispatch(getLogin(data))
   };
 
   const handleRegister = () => {
@@ -52,6 +59,7 @@ const Login = () => {
           secureTextEntry
         />
         <TouchableOpacity
+        onPress={() => handleLogin()}
           style={styles.principalColor}
           className="w-full p-4 rounded-full mt-8 flex justify-center items-center shadow-2xl shadow-black">
           <Text className="text-slate-50  font-bold  text-xl"> Ingresar</Text>
