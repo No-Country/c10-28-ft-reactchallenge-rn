@@ -7,8 +7,8 @@ import {getCategory} from "../redux/action";
 
 const RenderItem = ({ item, navegar }) => {
   return (
-    <View className="justify-center, w-20 h-20 items-center p-1 rounded-lg ">
-      <Image className="w-12 h-12  rounded-lg " source={{ uri: item.fotos[0] }} />
+    <View className="justify-center, w-40 h-40 items-center p-1 rounded-lg ">
+      <Image className="w-28 h-28  rounded-lg " source={{ uri: item.fotos[0] }} />
       <TouchableOpacity
         onPress={() => navegar(item)}
         style={{
@@ -20,7 +20,7 @@ const RenderItem = ({ item, navegar }) => {
           width: "100%",
         }}>
         <Text style={{ color: "white", fontSize: 10, padding:2, fontWeight: "bold" }}>
-          {item.precio}
+          {item.titulo}
         </Text>
       </TouchableOpacity>
     </View>
@@ -47,7 +47,7 @@ const Carrousel = ({data}) => {
       style={{
         justifyContent: "center",
         alignItems: "center",
-        left: -140,
+        left: -130,
         borderColor: "gray",
         padding: 5,
       }}>
@@ -56,7 +56,7 @@ const Carrousel = ({data}) => {
         data={data}
         renderItem={({ item }) => <RenderItem item={item} navegar={navegar} />}
         sliderWidth={640}
-        itemWidth={100}
+        itemWidth={150}
         itemHeight={150}
         onSnapToItem={(index) => setActiveIndex(index)}
         autoplay={false}

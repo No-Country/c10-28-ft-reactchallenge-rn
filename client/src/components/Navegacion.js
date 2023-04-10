@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../pages/Home";
 import ListaItems from "./ListaItems";
@@ -15,12 +15,18 @@ import Productos from "../pages/Productos";
 import Cabecera from "./Cabecera";
 import Publicar from "./Publicar";
 import Camara from "./Camara";
+import Welcome from "../pages/Welcome"
+import {useSelector} from "react-redux";
 
 const Stack = createStackNavigator();
 
 const Navegacion = () => {
+  const user = useSelector((state) => state.user)
+ console.log('user',user.access_token)
+ useEffect(() =>{},[user])
   return (
     <>
+    {user.access_token ?
       <Menu>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />
@@ -32,12 +38,18 @@ const Navegacion = () => {
           <Stack.Screen name="Perfil" component={MiPerfil} />
           <Stack.Screen name="Acercade" component={Acercade} />
           <Stack.Screen name="Contacto" component={Contacto} />
-          <Stack.Screen name="Registro" component={Registro} />
-          <Stack.Screen name="Login" component={Login} />
+          
           <Stack.Screen name="Publicar" component={Publicar} />
           <Stack.Screen name="Camara" component={Camara} />
         </Stack.Navigator>
       </Menu>
+      :
+      <Stack.Navigator  >
+          <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
+          <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Registro" component={Registro} />
+      </Stack.Navigator>
+}
     </>
   );
 };

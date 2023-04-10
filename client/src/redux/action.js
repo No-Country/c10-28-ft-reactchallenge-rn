@@ -8,6 +8,8 @@ import {
   GET_CATEGORY_FILTER,
   FILTER_BY_VENTAS,
   GET_REVIEWS,
+  GET_LOGIN,
+  LOGOUT
 } from "./constants";
 
 export const getPost = () => {
@@ -152,3 +154,40 @@ export const getReviews = (data) => {
     }
   };
 };
+
+
+export const getLogin = (data) => {
+  console.log('loginaction', data)
+  return async(dispatch) => {
+    try {
+      const login = await axios.post('https://cambialoapi-production.up.railway.app/auth/login',data)
+      return dispatch({
+        type: GET_LOGIN,
+        payload: login.data,
+      });
+    } catch (error) {
+      dispatch({ type: SET_LOADING, payload: false });
+      return dispatch({
+        type: ERROR,
+        payload: error,
+      });
+    }
+  }
+}
+
+export const logout = () => {
+  return (dispatch) => {
+    try {
+      return dispatch({
+        type: LOGOUT,
+        payload: ''
+      })
+    } catch (error) {
+      dispatch({ type: SET_LOADING, payload: false });
+      return dispatch({
+        type: ERROR,
+        payload: error,
+      });
+    }
+  }
+}

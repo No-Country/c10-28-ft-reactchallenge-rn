@@ -15,6 +15,8 @@ import {
   FILTER_BY_VENTAS,
   PRODUCT_USER,
   GET_REVIEWS,
+  GET_LOGIN,
+  LOGOUT
 } from "./constants";
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +31,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: action.payload,
       };
+      case GET_LOGIN:
+        return {
+          ...state,
+          user: action.payload
+        }
+        case LOGOUT:
+          return {
+            ...state,
+            user: {}
+          }
     case GET_SEARCH:
       return {
         ...state,
