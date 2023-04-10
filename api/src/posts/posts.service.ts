@@ -4,6 +4,7 @@ import { ILike, Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
+import { User } from 'src/users/entities/user.entity';
 // const response = require("../../publicaciones.json")
 
 @Injectable()
@@ -12,28 +13,32 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private postsRepository: Repository<Post>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>
   ) { }
 
-  // create(createPostDto: CreatePostDto) {
+  async create(createPostDto: CreatePostDto) {
 
-  //     const post = this.postsRepository.create({
-  //       vendedor_id: element.vendedor_id,
-  //       titulo: element.titulo,
-  //       descripcion: element.descripcion,
-  //       condiciones_intercambio: element.condiciones_intercambio,
-  //       trueque: element.trueque,
-  //       venta: element.venta,
-  //       precio: element.precio,
-  //       fotos: element.fotos,
-  //       disponible: element.disponible,
-  //       tipo: element.tipo,
-  //       categoria: element.categoria
-  //     });
+    const { vendedor_id, ...postData } = createPostDto;
 
-  //     await this.postsRepository.save(post);
+    const post = this.postsRepository.create(postData);
 
-  //   return 'This action adds a new post';
-  // }
+    await this.postsRepository.save(post)
+
+    const user = await this.usersRepository.findOne({
+      relations: {
+        user_posts: true
+      }, where: {
+        user_id: vendedor_id
+      }
+    });
+
+    user.user_posts.push(post);
+
+    await this.usersRepository.save(user);
+
+    return post
+  }
 
   async findAll(queries): Promise<Post[]> {
 
@@ -54,12 +59,18 @@ export class PostsService {
           const currentSearch = { ...searchQueries, titulo: ILike(`%${queries.search}%`) };
 
           return await this.postsRepository.find({
+            relations: {
+              vendedor_id: true
+            },
             where: currentSearch
           });
 
         } else {
 
           return await this.postsRepository.find({
+            relations: {
+              vendedor_id: true
+            },
             where: searchQueries
           });
 
@@ -67,7 +78,7 @@ export class PostsService {
 
       } else {
 
-        return await this.postsRepository.find();
+        return await this.postsRepository.find({ relations: { vendedor_id: true } });
 
       }
 

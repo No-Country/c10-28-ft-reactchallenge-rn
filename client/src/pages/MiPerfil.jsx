@@ -11,6 +11,7 @@ import Cabecera from "../components/Cabecera";
 import ProductsHeaders from "../components/ProductsHeaders";
 import Botons from "../components/Botons";
 import Carrousel from "../components/Carrousel";
+import ProductUser from "../components/ProductUser";
 
 const Perfil = () => {
   return (
@@ -29,6 +30,10 @@ const Perfil = () => {
               title={"Publicar"}
               bgBotton={"#9874BA"}
               redondo={10}
+              size={28}
+              flex={"row"}
+              altura={40}
+              navegar={"Publicar"}
             />
           </View>
         </View>
@@ -39,6 +44,7 @@ const Perfil = () => {
           <View className="m-3">
             <Text className="text-gray-50">
               {" "}
+              {/* {descripcion} */}
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
               exercitationem autem est maxime deleniti! Vitae amet eius at
               temporibus ipsa enim beatae obcaecati, minima sunt pariatur aut
@@ -51,14 +57,14 @@ const Perfil = () => {
             {" "}
             Productos a la venta o trueque
           </Text>
-          <Carrousel />
+          {/* <ProductUser /> */}
         </View>
         <View>
           <Text className="text-purple-200 my-2 font-bold text-xl border-2 border-purple-900 text-center rounded-full bg-purple-900">
             {" "}
             Servicios que ofrece
           </Text>
-          <Carrousel />
+          {/* <ProductUser /> */}
         </View>
       </View>
     </View>

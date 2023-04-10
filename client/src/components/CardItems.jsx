@@ -12,7 +12,8 @@ const CardItems = ({ data }) => {
     <TouchableOpacity onPress={() => navega()}>
       <View
         style={{ backgroundColor: "#EAE0F4" }}
-        className=" items-center w-48 h-56  rounded-lg  ">
+        className=" items-center w-48 h-56  rounded-lg  "
+      >
         <View className=" w-48 h-40 max-w-full max-h-48 ">
           <Image
             style={{

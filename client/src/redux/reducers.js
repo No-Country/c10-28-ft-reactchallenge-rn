@@ -14,6 +14,7 @@ import {
   GET_CATEGORY_FILTER,
   FILTER_BY_VENTAS,
   PRODUCT_USER,
+  GET_REVIEWS,
 } from "./constants";
 
 const reducer = (state = initialState, action) => {
@@ -38,16 +39,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         postsFiltrados: action.payload,
       };
-      case FILTER_BY_VENTAS:
-        return {
-          ...state,
-          postsFiltrados: action.payload
-        };
-        case PRODUCT_USER:
-          return {
-            ...state,
-            postUser: action.payload
-          }
+    case FILTER_BY_VENTAS:
+      return {
+        ...state,
+        postsFiltrados: action.payload,
+      };
+    case PRODUCT_USER:
+      return {
+        ...state,
+        postUser: action.payload,
+      };
+    case GET_REVIEWS:
+      return {
+        ...state,
+        postsReviews: action.payload,
+      };
     case ERROR:
       return {
         ...state,
