@@ -33,22 +33,12 @@ const Carrousel = ({data}) => {
   const dispatch = useDispatch()
   const navigation = useNavigation();
 
-/*   const data = [
-    { uri: "https://picsum.photos/id/10/200/300", category: "juguetes" },
-    { uri: "https://picsum.photos/id/10/200/300", category: "herramientas" },
-    { uri: "https://picsum.photos/id/20/200/300", category: "informatica" },
-    { uri: "https://picsum.photos/id/30/200/300", category: "electrodomesticos" },
-    { uri: "https://picsum.photos/id/30/200/300", category: "cuidado personal" },
-    { uri: "https://picsum.photos/id/40/200/300", category: "deportes" },
-    { uri: "https://picsum.photos/id/40/200/300", category: "rodados" },
-    { uri: "https://picsum.photos/id/50/200/300", category: "hogar y construccion" },
-    { uri: "https://picsum.photos/id/50/200/300", category: "indumentaria" },
-  ]; */
+
 
   const navegar = (item) => {
     
-    navigation.navigate("Productos", item.category);
-    dispatch(getCategory(item.category))
+    navigation.navigate("Detalles", item);
+   
   
   };
 
