@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const Registro = () => {
   const [fullName, setFullName] = useState("");
@@ -16,6 +17,7 @@ const Registro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
+  const navigation = useNavigation();
 
   const registerUser = async (userData) => {
     try {
@@ -23,6 +25,8 @@ const Registro = () => {
         "https://cambialoapi-production.up.railway.app/users",
         userData
       );
+      const authToken = response.data.token;
+      navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
@@ -35,9 +39,10 @@ const Registro = () => {
       telefono: phone,
       email: email,
       password: password,
-      foto_perfil: avatar
+      foto_perfil: avatar,
     };
     registerUser(userData);
+    navigation.navigate("Login");
   };
 
   const handleLogin = () => {
