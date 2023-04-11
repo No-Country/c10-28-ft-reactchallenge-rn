@@ -16,7 +16,7 @@ const Registro = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [avatar, setAvatar] = useState("");
+ 
   const navigation = useNavigation();
 
   const registerUser = async (userData) => {
@@ -39,7 +39,7 @@ const Registro = () => {
       telefono: phone,
       email: email,
       password: password,
-      foto_perfil: avatar,
+      
     };
     registerUser(userData);
     navigation.navigate("Login");
@@ -64,12 +64,7 @@ const Registro = () => {
           value={fullName}
           placeholder="Nombre Completo"
         />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setAvatar(text)}
-          value={avatar}
-          placeholder="Foto perfil"
-        />
+        
 
         <TextInput
           style={styles.input}

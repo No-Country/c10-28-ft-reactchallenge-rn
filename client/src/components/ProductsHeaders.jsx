@@ -10,8 +10,12 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import logo from "../images/mujer.png";
 import Botons from "./Botons";
+import {useSelector} from "react-redux";
+import Start from './Start'
 
 const ProductsHeaders = ({ img, name, direccion }) => {
+  const user = useSelector((state) => state.user) 
+  console.log(user.user.email)
   const [like, setLike] = useState(true);
   const [star, setStar] = useState(true);
   const [star2, setStar2] = useState(true);
@@ -54,7 +58,7 @@ const ProductsHeaders = ({ img, name, direccion }) => {
     <View className="flex flex-row  justify-evenly items-center ">
       <View className="">
         <View className=" rounded-full overflow-hidden bg-purple-800  border-purple-400 border-8">
-          <Image style={{ height: 100, width: 100 }} source={logo} />
+          <Image style={{ height: 100, width: 100 }} source={{uri: user.user.foto_perfil}} />
         </View>
       </View>
       <View>
@@ -66,46 +70,17 @@ const ProductsHeaders = ({ img, name, direccion }) => {
             onPress={likeHeart}
           />
         </View>
-        <View className="flex flex-row ml-2 ">
-          <Botons
-            icon={"star"}
-            color={star ? "#f1f1f1" : "yellow"}
-            size={28}
-            onPress={star1f}
-          />
-          <Botons
-            icon={"star"}
-            color={star2 ? "#f1f1f1" : "yellow"}
-            size={28}
-            onPress={star2f}
-          />
-          <Botons
-            icon={"star"}
-            color={star3 ? "#f1f1f1" : "yellow"}
-            size={28}
-            onPress={star3f}
-          />
-          <Botons
-            icon={"star"}
-            color={star4 ? "#f1f1f1" : "yellow"}
-            size={28}
-            onPress={star4f}
-          />
-          <Botons
-            icon={"star"}
-            color={star5 ? "#f1f1f1" : "yellow"}
-            size={28}
-            onPress={star5f}
-          />
+        <View className="flex flex-row ml-2 m-3 ">
+        <Start />
+
         </View>
         <View className="flex items-end ">
           <Text className="font-bold text-lg -mt-4  text-zinc-100 ">
-            {name}
-            Martina Almiron
+            {user.user.nombre_completo}
+            
           </Text>
           <Text className="text-base text-zinc-100">
-            {direccion}
-            Buenos Aires, La Plata
+            {user.user.direccion}
           </Text>
         </View>
       </View>

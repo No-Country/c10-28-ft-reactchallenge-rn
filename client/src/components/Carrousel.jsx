@@ -7,23 +7,23 @@ import {getCategory} from "../redux/action";
 
 const RenderItem = ({ item, navegar }) => {
   return (
-    <View className="justify-center, w-40 h-40 items-center p-1 rounded-lg ">
-      <Image className="w-28 h-28  rounded-lg " source={{ uri: item.fotos[0] }} />
-      <TouchableOpacity
-        onPress={() => navegar(item)}
+    <TouchableOpacity  onPress={() => navegar(item)} className="justify-center mt-3 w-44 h-44 items-center p-1 rounded-lg ">
+      <Image className="w-36 h-36  rounded-lg " source={{ uri: item.fotos[0] }} />
+      <View
+       
         style={{
           backgroundColor: "#9874BA",
           borderRadius: 10,
           justifyContent: "center",
           alignItems: "center",
           marginTop: 5,
-          width: "100%",
+          width: '100%',
         }}>
-        <Text style={{ color: "white", fontSize: 10, padding:2, fontWeight: "bold" }}>
+        <Text numberOfLines={1} ellipsizeMode='tail' className="truncate w-full" style={{ maxWidth: 100, color: "white", fontSize: 10, padding:2, fontWeight: "bold" }}   >
           {item.titulo}
         </Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -47,7 +47,7 @@ const Carrousel = ({data}) => {
       style={{
         justifyContent: "center",
         alignItems: "center",
-        left: -130,
+        left: -100,
         borderColor: "gray",
         padding: 5,
       }}>
@@ -55,8 +55,8 @@ const Carrousel = ({data}) => {
         ref={carouselRef}
         data={data}
         renderItem={({ item }) => <RenderItem item={item} navegar={navegar} />}
-        sliderWidth={640}
-        itemWidth={150}
+        sliderWidth={700}
+        itemWidth={200}
         itemHeight={150}
         onSnapToItem={(index) => setActiveIndex(index)}
         autoplay={false}

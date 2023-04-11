@@ -9,24 +9,19 @@ import {getPost} from "../redux/action";
 
 
 
-const Productos = ({route}) => {
+const Publicaciones = ({route}) => {
   const dispatch = useDispatch()
   const post = useSelector((state) => state.postsFiltrados);
-  const loading = useSelector((state) => state.loading);
-  
-console.log(post.length)
-console.log(loading)
+  const [loading, setLoading] = useState(true)
+
 const [showMessage, setShowMessage] = useState(false);
 
 useEffect(() => {
   let timer;
-  if (post.length === 0 && loading) {
-    timer = setTimeout(() => {
-      setShowMessage(true);
-      dispatch({ type: 'SET_LOADING', payload: false });
-    }, 2000);
-  } else {
-    setShowMessage(false);
+  if (post.length > 0) {
+    
+      setLoading(false)
+    
   }
 
   return () => {
@@ -52,14 +47,11 @@ useEffect(() => {
       </View>
     }
 
-    {showMessage && (
-      <View>
-        <Text>Ha pasado más de 2 segundos y no hay nada que mostrar.</Text>
-      </View>
-    )}
+    
+    
   </View>
 );
 }
 
 
-export default Productos
+export default Publicaciones
