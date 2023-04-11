@@ -47,14 +47,14 @@ const Home = () => {
      
           <View className="flex-1  ">
             <View>
-              <TouchableOpacity onPress={() => navigation.navigate('productos')} >
+              <TouchableOpacity onPress={() => navigation.navigate('Publicaciones')} >
               <Text className=" font-black "> Productos {">"} </Text> 
               </TouchableOpacity>
               <Carrousel data={venta} />
             </View>
-            <View>
-            <TouchableOpacity onPress={() => navigation.navigate('productos')} >
-              <Text className=" font-black "> Productos  {">"}</Text>
+            <View className=" mt-5 ">
+            <TouchableOpacity onPress={() => navigation.navigate('Publicaciones')} >
+              <Text className=" font-black "> Servicios  {">"}</Text>
               </TouchableOpacity>
               <Carrousel data={servicios} />
             </View>

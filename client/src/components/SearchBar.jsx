@@ -22,7 +22,7 @@ const SearchBar = ({ onChangeText }) => {
   const search = () => {
     dispatch(searchBar(searchText))
     
-    navigation.navigate('Productos')
+    navigation.navigate('Publicaciones')
   }
 
   return (

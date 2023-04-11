@@ -11,7 +11,7 @@ import MiPerfil from "../pages/MiPerfil";
 import Contacto from "../pages/Contacto";
 import Login from "./Login";
 import Registro from "./Registro";
-import Productos from "../pages/Productos";
+import Publicaciones from "../pages/Publicaciones";
 import Cabecera from "./Cabecera";
 import Publicar from "./Publicar";
 import Camara from "./Camara";
@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 
 const Navegacion = () => {
   const user = useSelector((state) => state.user)
- console.log('user',user.access_token)
+ console.log('user',user)
  useEffect(() =>{},[user])
   return (
     <>
@@ -32,7 +32,7 @@ const Navegacion = () => {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Menu" component={Menu} />
           <Stack.Screen name="Lista" component={ListaItems} />
-          <Stack.Screen name="Productos" component={Productos} />
+          <Stack.Screen name="Publicaciones" component={Publicaciones} />
           <Stack.Screen name="cards" component={CardItems} />
           <Stack.Screen name="Detalles" component={Detalles} />
           <Stack.Screen name="Perfil" component={MiPerfil} />
