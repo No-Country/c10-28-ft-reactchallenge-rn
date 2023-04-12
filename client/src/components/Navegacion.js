@@ -22,8 +22,11 @@ const Stack = createStackNavigator();
 
 const Navegacion = () => {
   const user = useSelector((state) => state.user)
- console.log('user',user)
  useEffect(() =>{},[user])
+
+
+
+ 
   return (
     <>
     {user.access_token ?
