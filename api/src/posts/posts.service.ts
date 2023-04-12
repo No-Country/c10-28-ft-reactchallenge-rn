@@ -44,12 +44,20 @@ export class PostsService {
 
     try {
 
+      const select = {
+        publicacion_id: true,
+        titulo: true,
+        fotos: true
+      }
+
       if (Object.keys(queries).length > 0) {
 
         const searchQueries = {
           tipo: queries.tipo,
           categoria: queries.categoria,
-          vendedor_id: queries.vendedor,
+          vendedor_id: {
+            user_id: queries.vendedor
+          },
           venta: queries.venta === "true" ? true : null,
           trueque: queries.trueque === "true" ? true : null
         }
@@ -58,27 +66,37 @@ export class PostsService {
 
           const currentSearch = { ...searchQueries, titulo: ILike(`%${queries.search}%`) };
 
-          return await this.postsRepository.find({
-            relations: {
-              vendedor_id: true
-            },
+          const posts = await this.postsRepository.find({
+            select,
             where: currentSearch
           });
 
+          posts.forEach((post) => { post.fotos = [post.fotos[0]] });
+
+          return posts
+
         } else {
 
-          return await this.postsRepository.find({
-            relations: {
-              vendedor_id: true
-            },
+          const posts = await this.postsRepository.find({
+            select,
             where: searchQueries
           });
+
+          posts.forEach((post) => { post.fotos = [post.fotos[0]] });
+
+          return posts
 
         }
 
       } else {
 
-        return await this.postsRepository.find({ relations: { vendedor_id: true } });
+        const posts = await this.postsRepository.find({
+          select,
+        });
+
+        posts.forEach((post) => { post.fotos = [post.fotos[0]] });
+
+        return posts
 
       }
 
@@ -87,13 +105,7 @@ export class PostsService {
       console.log(error);
       return [];
 
-
     }
-
-
-
-
-
   }
 
   async findOne(id: number) {
