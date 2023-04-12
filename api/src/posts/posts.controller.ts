@@ -18,10 +18,10 @@ export class PostsController {
     return this.postsService.findAll(queries);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.postsService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.postsService.findOne(+id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {

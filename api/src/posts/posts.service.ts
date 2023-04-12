@@ -96,9 +96,32 @@ export class PostsService {
 
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} post`;
-  // }
+  async findOne(id: number) {
+
+    const post = await this.postsRepository.findOne({
+      where: {
+        publicacion_id: id
+      },
+      relations: {
+        vendedor_id: {
+          user_reviews: true
+        }
+      }
+    });
+
+    const { vendedor_id, ...details } = post;
+
+    const { user_reviews, email, password, telefono, ...vendedor } = vendedor_id;
+
+    const calificacionPromedio = user_reviews.length > 1 ? Math.round(user_reviews.reduce((total, review) => total + review.calificacion, 0) / user_reviews.length) : 0;
+
+    const miniPerfil_vendedor = { ...vendedor, calificacionPromedio };
+
+    const response = { ...details, vendedor_id: { ...miniPerfil_vendedor } };
+
+    return response;
+
+  }
 
   // update(id: number, updatePostDto: UpdatePostDto) {
   //   return `This action updates a #${id} post`;
