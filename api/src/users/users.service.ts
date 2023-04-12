@@ -18,6 +18,12 @@ export class UsersService {
 
     try {
 
+      const email = await this.usersRepository.findOneBy({ email: createUserDto.email });
+
+      if (email) {
+        throw new Error(`${createUserDto.email} ya ha sido registrado.`)
+      }
+
       const user = this.usersRepository.create({
         email: createUserDto.email,
         password: createUserDto.password,
@@ -32,7 +38,7 @@ export class UsersService {
 
     } catch (error) {
 
-      return error
+      return { message: error.message }
 
     }
 
