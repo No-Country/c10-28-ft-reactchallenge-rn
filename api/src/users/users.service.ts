@@ -52,10 +52,15 @@ export class UsersService {
 
   async findOne(email: string) {
     return await this.usersRepository.findOne({
-      where: { email },
-      relations: {
-        user_posts: true,
-        user_reviews: true
+      where: {
+        email
+      },
+      select: {
+        user_id: true,
+        email: true,
+        nombre_completo: true,
+        foto_perfil: true,
+        password: true
       }
     });
   }
