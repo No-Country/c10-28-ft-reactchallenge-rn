@@ -17,7 +17,7 @@ export class User {
     @Column()
     nombre_completo: string;
 
-    @Column()
+    @Column({ default: "" })
     foto_perfil: string;
 
     @Column()
