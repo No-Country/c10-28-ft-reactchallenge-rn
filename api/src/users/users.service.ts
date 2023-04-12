@@ -18,6 +18,12 @@ export class UsersService {
 
     try {
 
+      const email = await this.usersRepository.findOneBy({ email: createUserDto.email });
+
+      if (email) {
+        throw new Error(`${createUserDto.email} ya ha sido registrado.`)
+      }
+
       const user = this.usersRepository.create({
         email: createUserDto.email,
         password: createUserDto.password,
@@ -32,7 +38,7 @@ export class UsersService {
 
     } catch (error) {
 
-      return error
+      return { message: error.message }
 
     }
 
@@ -46,10 +52,15 @@ export class UsersService {
 
   async findOne(email: string) {
     return await this.usersRepository.findOne({
-      where: { email },
-      relations: {
-        user_posts: true,
-        user_reviews: true
+      where: {
+        email
+      },
+      select: {
+        user_id: true,
+        email: true,
+        nombre_completo: true,
+        foto_perfil: true,
+        password: true
       }
     });
   }
@@ -59,14 +70,35 @@ export class UsersService {
       relations: {
         user_posts: true,
         user_reviews: true
-      }, where: {
+      },
+      where: {
         user_id: id
+      },
+      select: {
+        user_id: true,
+        email: true,
+        nombre_completo: true,
+        foto_perfil: true,
+        direccion: true,
+        telefono: true,
+        user_posts: {
+          publicacion_id: true,
+          titulo: true,
+          fotos: true
+        },
+        user_reviews: true
       }
     });
 
-    const { password, ...data } = user;
+    user.user_posts.forEach((post) => { post.fotos = [post.fotos[0]] });
 
-    return data
+    const calificacionPromedio = user.user_reviews.length > 1 ? Math.round(user.user_reviews.reduce((total, review) => total + review.calificacion, 0) / user.user_reviews.length) : 0;
+
+    const response = { ...user, calificacionPromedio };
+
+    // const { password, ...data } = user;
+
+    return response;
   }
 
   // update(id: number, updateUserDto: UpdateUserDto) {
