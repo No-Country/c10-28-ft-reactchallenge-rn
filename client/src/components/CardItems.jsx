@@ -12,7 +12,7 @@ const CardItems = ({ data }) => {
     <TouchableOpacity onPress={() => navega()}>
       <View
         style={{ backgroundColor: "#EAE0F4" }}
-        className=" items-center w-48 h-56  rounded-lg  "
+        className=" items-center px-2   rounded-lg  "
       >
         <View className=" w-48 h-40 max-w-full max-h-48 ">
           <Image
@@ -24,9 +24,11 @@ const CardItems = ({ data }) => {
             source={{ uri: fotos[0] }}
           />
         </View>
-        <View>
-          <Text className="font-black ">{precio}</Text>
-          <Text className="fo ">{titulo}</Text>
+        <View className="w-full">
+          
+        <Text numberOfLines={1} ellipsizeMode='tail' className="truncate w-full" style={{ maxWidth: 180, color: "black", fontSize: 14, padding:2, fontWeight: "bold" }}   >
+
+            {titulo}</Text>
         </View>
       </View>
     </TouchableOpacity>
