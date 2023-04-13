@@ -16,12 +16,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Filtros from "./Filtros";
-import {useDispatch} from "react-redux";
-import {logout} from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/action";
 
 const Menu = ({ children }) => {
+  const user = useSelector((state) => state.user);
   const drawer = useRef(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [drawerPosition, setDrawerPosition] = useState("right");
   // const changeDrawerPosition = () => {
   //   if (drawerPosition === 'left') {
@@ -76,17 +77,20 @@ const Menu = ({ children }) => {
       <View style={{ backgroundColor: "#3D2851" }} className="p-5">
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Perfil")}>
+          onPress={() => navigation.navigate("Perfil", user.user.user_id)}
+        >
           <Text style={styles.text}>Mi Perfil</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Acercade")}>
+          onPress={() => navigation.navigate("Acercade")}
+        >
           <Text style={styles.text}>Acerca de Cambialo</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Contacto")}>
+          onPress={() => navigation.navigate("Contacto")}
+        >
           <Text style={styles.text}>Contacto</Text>
         </TouchableOpacity>
         <View style={styles.button}>
@@ -94,7 +98,8 @@ const Menu = ({ children }) => {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => dispatch(logout())}>
+          onPress={() => dispatch(logout())}
+        >
           <Text style={styles.text}>Cerrar sesion</Text>
         </TouchableOpacity>
       </View>
@@ -102,7 +107,8 @@ const Menu = ({ children }) => {
         <TouchableOpacity
           style={styles.buttonCerrar}
           className="rounded-3xl  px-8 "
-          onPress={() => closeDrawer()}>
+          onPress={() => closeDrawer()}
+        >
           <Text className="font-bold " style={styles.text}>
             CERRAR
           </Text>
@@ -117,7 +123,8 @@ const Menu = ({ children }) => {
         {currentScreen !== undefined && currentScreen !== 0 ? (
           <TouchableOpacity
             className="absolute top-10 left-5"
-            onPress={() => navigation.goBack()}>
+            onPress={() => navigation.goBack()}
+          >
             <Icon name="arrow-back" size={35} color="#fff" />
           </TouchableOpacity>
         ) : (
@@ -126,7 +133,8 @@ const Menu = ({ children }) => {
 
         <TouchableOpacity
           style={{ marginRight: 15, paddingBottom: 5 }}
-          onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}>
+          onPress={() => (isDrawerOpen ? closeDrawer() : openDrawer())}
+        >
           <Icon name="menu" size={40} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -138,7 +146,8 @@ const Menu = ({ children }) => {
         onDrawerOpen={() => setIsDrawerOpen(true)}
         renderNavigationView={() => (
           <NavigationView closeDrawer={closeDrawer} />
-        )}>
+        )}
+      >
         <View style={{ flex: 1, backgroundColor: "blue", height: "100%" }}>
           {children}
         </View>

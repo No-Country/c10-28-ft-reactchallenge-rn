@@ -1,16 +1,15 @@
 import React, { useRef, useState } from "react";
 import { TextInput, Pressable, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import {useDispatch } from "react-redux";
-import {searchBar} from "../redux/action";
+import { useDispatch } from "react-redux";
+import { searchBar } from "../redux/action";
 import { useNavigation } from "@react-navigation/native";
 
 const SearchBar = ({ onChangeText }) => {
-  
   const [searchText, setSearchText] = useState("");
   const searchInputRef = useRef(null);
-  const dispatch = useDispatch()
-  const navigation = useNavigation()
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const handleOnChangeText = (text) => {
     setSearchText(text);
   };
@@ -20,10 +19,10 @@ const SearchBar = ({ onChangeText }) => {
   };
 
   const search = () => {
-    dispatch(searchBar(searchText))
-    
-    navigation.navigate('Publicaciones')
-  }
+    dispatch(searchBar(searchText));
+
+    navigation.navigate("Publicaciones", "Resultados de búsqueda");
+  };
 
   return (
     <Pressable
@@ -42,9 +41,12 @@ const SearchBar = ({ onChangeText }) => {
         maxLength={50}
         ref={searchInputRef}
       />
-      <TouchableOpacity onPress={() => search()} className="justify-end items-end " >
-      <Icon name="arrow-forward" size={18} color="#3D2851" className="mx-2" />
-    </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => search()}
+        className="justify-end items-end "
+      >
+        <Icon name="arrow-forward" size={18} color="#3D2851" className="mx-2" />
+      </TouchableOpacity>
     </Pressable>
   );
 };

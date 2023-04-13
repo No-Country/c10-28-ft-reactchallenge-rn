@@ -13,16 +13,30 @@ import Botons from "../components/Botons";
 import Carrousel from "../components/Carrousel";
 import ProductUser from "../components/ProductUser";
 
-const Perfil = () => {
+const Perfil = ({ route }) => {
+  const id = route.params;
+
   return (
     <View style={styles.fondo} className="h-full relative ">
       <View
         style={styles.principalColor}
-        className="w-screen h-2/3 rounded-br-full  "></View>
+        className="w-screen h-2/3 rounded-br-full  "
+      ></View>
       <View style={styles.main} className="absolute">
         <View>
           <View>
-            <ProductsHeaders />
+            <ProductsHeaders
+              data={{
+                vendedor_id: {
+                  user_id: 3,
+                  nombre_completo: "Johanna Davis MD",
+                  foto_perfil:
+                    "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/454.jpg",
+                  direccion: "12266 Casey Village",
+                  calificacionPromedio: 4,
+                },
+              }}
+            />
           </View>
           <View className=" flex items-end m-4">
             <Botons

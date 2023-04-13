@@ -3,35 +3,24 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const CardItems = ({ data }) => {
-  const { titulo, fotos, precio } = data;
+  const { titulo, fotos, publicacion_id } = data;
   const navigation = useNavigation();
-  const navega = () => {
-    navigation.navigate("Detalles", data);
-  };
+  function pressHandler(id) {
+    navigation.navigate("Detalles", id);
+  }
   return (
-    <TouchableOpacity onPress={() => navega()}>
-      <View
-        style={{ backgroundColor: "#EAE0F4" }}
-        className=" items-center px-2   rounded-lg  "
-      >
-        <View className=" w-48 h-40 max-w-full max-h-48 ">
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 8,
-            }}
-            source={{ uri: fotos[0] }}
-          />
-        </View>
-        <View className="w-full">
-          
-        <Text numberOfLines={1} ellipsizeMode='tail' className="truncate w-full" style={{ maxWidth: 180, color: "black", fontSize: 14, padding:2, fontWeight: "bold" }}   >
-
-            {titulo}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+    <View className="bg-white p-2 rounded w-40 flex items-center">
+      <TouchableOpacity onPress={() => pressHandler(publicacion_id)}>
+        <Image source={{ uri: fotos[0] }} className="w-36 h-36" />
+        <Text
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          className="bg-[#9874BA] mt-2 py-1 px-3 rounded-md text-white font-semibold text-center"
+        >
+          {titulo.split(" ")[0]}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
