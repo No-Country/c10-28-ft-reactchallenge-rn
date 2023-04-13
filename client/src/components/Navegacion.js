@@ -29,7 +29,7 @@ const Navegacion = () => {
  
   return (
     <>
-    {user.access_token ?
+   
       <Menu>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />
@@ -46,13 +46,13 @@ const Navegacion = () => {
           <Stack.Screen name="Camara" component={Camara} />
         </Stack.Navigator>
       </Menu>
-      :
-      <Stack.Navigator  >
+      
+      {/* <Stack.Navigator  >
           <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
           <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Registro" component={Registro} />
-      </Stack.Navigator>
-}
+      </Stack.Navigator> */}
+
     </>
   );
 };

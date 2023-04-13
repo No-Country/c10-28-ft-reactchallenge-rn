@@ -6,7 +6,7 @@ import CardItems from "./CardItems";
 
 
 const renderItem = ({ item }) => (
-  <View style={{ flex: 1, alignItems: "center", margin: 10 }}>
+  <View style={{ flex: 1, alignItems: "center", margin: 5 }}>
     <CardItems data={item} />
   </View>
 );
@@ -23,12 +23,13 @@ const ListaItems = ({data}) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#EAE0F4" }}>
      
-      <View className="flex-1 my-3">
+      <View className="flex-1 ">
         <FlatList
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.publicacion_id}
           numColumns={2}
+          
         />
       </View>
     </View>

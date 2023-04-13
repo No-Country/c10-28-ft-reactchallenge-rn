@@ -46,17 +46,17 @@ const Home = () => {
       <ScrollView className="flex-1 h-full " style={{ backgroundColor: "#EAE0F4", paddingTop: 5 }}>
      
           <View className="flex-1  ">
-            <View>
+            <View className="p-4" >
               <TouchableOpacity onPress={() => navigation.navigate('Publicaciones')} >
               <Text className=" font-black "> Productos {">"} </Text> 
               </TouchableOpacity>
-              <Carrousel data={venta} />
+              <ListaItems data={data} />
             </View>
-            <View className=" mt-5 ">
+            <View className="p-4 mt-2">
             <TouchableOpacity onPress={() => navigation.navigate('Publicaciones')} >
               <Text className=" font-black "> Servicios  {">"}</Text>
               </TouchableOpacity>
-              <Carrousel data={servicios} />
+              <ListaItems data={data} />
             </View>
           </View>
         
