@@ -10,12 +10,13 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import logo from "../images/mujer.png";
 import Botons from "./Botons";
-import {useSelector} from "react-redux";
-import Start from './Start'
+import { useSelector } from "react-redux";
+import Start from "./Start";
 
-const ProductsHeaders = ({ img, name, direccion }) => {
-  const user = useSelector((state) => state.user) 
-  console.log(user.user.email)
+const ProductsHeaders = ({ data }) => {
+  const { nombre_completo, foto_perfil, direccion, calificacionPromedio } =
+    data.vendedor_id;
+  // const user = useSelector((state) => state.user);
   const [like, setLike] = useState(true);
   const [star, setStar] = useState(true);
   const [star2, setStar2] = useState(true);
@@ -58,7 +59,10 @@ const ProductsHeaders = ({ img, name, direccion }) => {
     <View className="flex flex-row  justify-evenly items-center ">
       <View className="">
         <View className=" rounded-full overflow-hidden bg-purple-800  border-purple-400 border-8">
-          <Image style={{ height: 100, width: 100 }} source={{uri: user.user.foto_perfil}} />
+          <Image
+            style={{ height: 100, width: 100 }}
+            source={{ uri: foto_perfil }}
+          />
         </View>
       </View>
       <View>
@@ -71,17 +75,13 @@ const ProductsHeaders = ({ img, name, direccion }) => {
           />
         </View>
         <View className="flex flex-row ml-2 m-3 ">
-        <Start />
-
+          <Start promedio={calificacionPromedio} />
         </View>
         <View className="flex items-end ">
           <Text className="font-bold text-lg -mt-4  text-zinc-100 ">
-            {user.user.nombre_completo}
-            
+            {nombre_completo}
           </Text>
-          <Text className="text-base text-zinc-100">
-            {user.user.direccion}
-          </Text>
+          <Text className="text-base text-zinc-100">{direccion}</Text>
         </View>
       </View>
     </View>

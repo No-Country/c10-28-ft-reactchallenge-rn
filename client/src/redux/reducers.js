@@ -16,7 +16,8 @@ import {
   PRODUCT_USER,
   GET_REVIEWS,
   GET_LOGIN,
-  LOGOUT
+  LOGOUT,
+  GET_TYPE_FILTER,
 } from "./constants";
 
 const reducer = (state = initialState, action) => {
@@ -31,22 +32,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: action.payload,
       };
-      case GET_LOGIN:
-        return {
-          ...state,
-          user: action.payload
-        }
-        case LOGOUT:
-          return {
-            ...state,
-            user: {}
-          }
+    case GET_LOGIN:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: {},
+      };
     case GET_SEARCH:
       return {
         ...state,
         postsFiltrados: action.payload,
       };
     case GET_CATEGORY_FILTER:
+      return {
+        ...state,
+        postsFiltrados: action.payload,
+      };
+    case GET_TYPE_FILTER:
       return {
         ...state,
         postsFiltrados: action.payload,

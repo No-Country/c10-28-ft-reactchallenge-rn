@@ -15,44 +15,45 @@ import Publicaciones from "../pages/Publicaciones";
 import Cabecera from "./Cabecera";
 import Publicar from "./Publicar";
 import Camara from "./Camara";
-import Welcome from "../pages/Welcome"
-import {useSelector} from "react-redux";
+import Welcome from "../pages/Welcome";
+import { useSelector } from "react-redux";
 
 const Stack = createStackNavigator();
 
 const Navegacion = () => {
-  const user = useSelector((state) => state.user)
- useEffect(() =>{},[user])
+  const user = useSelector((state) => state.user);
+  useEffect(() => {}, [user]);
 
-
-
- 
   return (
     <>
-   
-      <Menu>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Menu" component={Menu} />
-          <Stack.Screen name="Lista" component={ListaItems} />
-          <Stack.Screen name="Publicaciones" component={Publicaciones} />
-          <Stack.Screen name="cards" component={CardItems} />
-          <Stack.Screen name="Detalles" component={Detalles} />
-          <Stack.Screen name="Perfil" component={MiPerfil} />
-          <Stack.Screen name="Acercade" component={Acercade} />
-          <Stack.Screen name="Contacto" component={Contacto} />
-          
-          <Stack.Screen name="Publicar" component={Publicar} />
-          <Stack.Screen name="Camara" component={Camara} />
-        </Stack.Navigator>
-      </Menu>
-      
-      {/* <Stack.Navigator  >
-          <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
-          <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Registro" component={Registro} />
-      </Stack.Navigator> */}
+      {user.access_token ? (
+        <Menu>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Menu" component={Menu} />
+            <Stack.Screen name="Lista" component={ListaItems} />
+            <Stack.Screen name="Publicaciones" component={Publicaciones} />
+            <Stack.Screen name="cards" component={CardItems} />
+            <Stack.Screen name="Detalles" component={Detalles} />
+            <Stack.Screen name="Perfil" component={MiPerfil} />
+            <Stack.Screen name="Acercade" component={Acercade} />
+            <Stack.Screen name="Contacto" component={Contacto} />
 
+            <Stack.Screen name="Publicar" component={Publicar} />
+            <Stack.Screen name="Camara" component={Camara} />
+          </Stack.Navigator>
+        </Menu>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Registro" component={Registro} />
+        </Stack.Navigator>
+      )}
     </>
   );
 };

@@ -9,7 +9,8 @@ import {
   FILTER_BY_VENTAS,
   GET_REVIEWS,
   GET_LOGIN,
-  LOGOUT
+  LOGOUT,
+  GET_TYPE_FILTER,
 } from "./constants";
 
 export const getPost = () => {
@@ -34,23 +35,41 @@ export const getPost = () => {
   };
 };
 
+export const getType = (postType) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: SET_LOADING, payload: true });
+      const response = await axios.get(
+        `https://cambialoapi-production.up.railway.app/posts?tipo=${postType}`
+      );
+      dispatch({ type: SET_LOADING, payload: false });
+      return dispatch({
+        type: GET_TYPE_FILTER,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({ type: SET_LOADING, payload: false });
+      return dispatch({
+        type: ERROR,
+        payload: error,
+      });
+    }
+  };
+};
+
 export const searchBar = (data) => {
   return async (dispatch) => {
     try {
-     
-
       console.log(data);
       const search = await axios.get(
         `https://cambialoapi-production.up.railway.app/posts?search=${data}`
       );
-      
 
       return dispatch({
         type: GET_SEARCH,
         payload: search.data,
       });
     } catch (error) {
-     
       return dispatch({
         type: ERROR,
         payload: error,
@@ -155,12 +174,14 @@ export const getReviews = (data) => {
   };
 };
 
-
 export const getLogin = (data) => {
-  console.log('loginaction', data)
-  return async(dispatch) => {
+  console.log("loginaction", data);
+  return async (dispatch) => {
     try {
-      const login = await axios.post('https://cambialoapi-production.up.railway.app/auth/login',data)
+      const login = await axios.post(
+        "https://cambialoapi-production.up.railway.app/auth/login",
+        data
+      );
       return dispatch({
         type: GET_LOGIN,
         payload: login.data,
@@ -172,16 +193,16 @@ export const getLogin = (data) => {
         payload: error,
       });
     }
-  }
-}
+  };
+};
 
 export const logout = () => {
   return (dispatch) => {
     try {
       return dispatch({
         type: LOGOUT,
-        payload: ''
-      })
+        payload: "",
+      });
     } catch (error) {
       dispatch({ type: SET_LOADING, payload: false });
       return dispatch({
@@ -189,5 +210,5 @@ export const logout = () => {
         payload: error,
       });
     }
-  }
-}
+  };
+};
