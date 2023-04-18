@@ -102,8 +102,9 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   logo: {
-    width: 300,
-    height: 300,
+    bottom: -30,
+    alignSelf: "center",
+    resizeMode: "contain",
   },
 
   input: {
