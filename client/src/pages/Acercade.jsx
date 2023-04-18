@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: "#372D40",
+    textAlign: "justify",
   },
 });
 
