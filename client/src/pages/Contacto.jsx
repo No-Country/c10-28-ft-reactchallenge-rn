@@ -7,7 +7,7 @@ const Contacto = () => {
     <View style={styles.container}>
       <View style={styles.contactBox}>
         <AntDesign name="mail" size={32} color="#888" />
-        <Text style={styles.contactText}>contacto@trueque.com</Text>
+        <Text style={styles.contactText}>contacto@cambialo.com</Text>
       </View>
       <View style={styles.contactBox}>
         <AntDesign name="phone" size={32} color="#888" />
