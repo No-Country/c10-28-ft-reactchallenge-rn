@@ -17,8 +17,10 @@ import Publicar from "./Publicar";
 import Camara from "./Camara";
 import Welcome from "../pages/Welcome";
 import { useSelector } from "react-redux";
+import TabBar from "./TabBar";
 
 const Stack = createStackNavigator();
+
 
 const Navegacion = () => {
   const user = useSelector((state) => state.user);
@@ -28,7 +30,8 @@ const Navegacion = () => {
     <>
       {user.access_token ? (
         <Menu>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="bar" component={TabBar} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Menu" component={Menu} />
             <Stack.Screen name="Lista" component={ListaItems} />
@@ -41,7 +44,7 @@ const Navegacion = () => {
 
             <Stack.Screen name="Publicar" component={Publicar} />
             <Stack.Screen name="Camara" component={Camara} />
-          </Stack.Navigator>
+          </Stack.Navigator> 
         </Menu>
       ) : (
         <Stack.Navigator>
@@ -54,6 +57,7 @@ const Navegacion = () => {
           <Stack.Screen name="Registro" component={Registro} />
         </Stack.Navigator>
       )}
+       
     </>
   );
 };
