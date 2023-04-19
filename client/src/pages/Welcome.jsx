@@ -15,13 +15,15 @@ const Welcome = () => {
   return (
     <View className="h-full" style={styles.fondo}>
       <View
-        style={[styles.principalColor, styles.height]}
-        className="w-full relative">
+        style={[styles.principalColor, styles.height, styles.container]}
+        className="w-full relative"
+      >
         <Image className="absolute" style={styles.imagen} source={Logo} />
       </View>
       <Text
         style={styles.colorText}
-        className="font-bold text-3xl pt-16 text-center">
+        className="font-bold text-3xl pt-16 text-center"
+      >
         Bienvenido a Cambialo
       </Text>
       <Text style={styles.colorText} className="text-center">
@@ -31,7 +33,8 @@ const Welcome = () => {
         <TouchableOpacity
           onPress={() => login()}
           style={styles.principalColor}
-          className="mx-5 p-4 rounded-full flex justify-center items-center shadow-2xl shadow-black">
+          className="mx-5 p-4 rounded-full flex justify-center items-center shadow-2xl shadow-black"
+        >
           <Text className="text-slate-50 font-bold  text-xl ">
             Iniciar Sesion
           </Text>
@@ -39,7 +42,8 @@ const Welcome = () => {
         <TouchableOpacity
           onPress={() => registro()}
           style={styles.principalColor}
-          className="mx-5 p-4 rounded-full flex justify-center items-center shadow-2xl shadow-black ">
+          className="mx-5 p-4 rounded-full flex justify-center items-center shadow-2xl shadow-black "
+        >
           <Text className="text-slate-50  font-bold  text-xl"> Registro</Text>
         </TouchableOpacity>
       </View>
@@ -57,11 +61,14 @@ const Welcome = () => {
 export default Welcome;
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   imagen: {
-    width: 300,
-    height: 300,
-    left: "15%",
-    bottom: "-18%",
+    bottom: -50,
+    alignSelf: "center",
+    resizeMode: "contain",
   },
   fondo: {
     backgroundColor: "#eae0f4",

@@ -6,6 +6,7 @@ import CardItems from "../components/CardItems";
 import { useDispatch, useSelector } from "react-redux";
 import ListaItems from "../components/ListaItems";
 import { getPost } from "../redux/action";
+import Filtros from "../components/Filtros";
 
 const Publicaciones = ({ route }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Publicaciones = ({ route }) => {
   return (
     <View className="px-6 py-2 bg-[#EAE0F4] h-full">
       <View>
+        <Filtros />
         <Text
           style={{
             fontFamily: "roboto-bold",

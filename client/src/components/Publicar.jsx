@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Image,
   Modal,
-  Button
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Botons from "./Botons";
@@ -15,6 +15,7 @@ import logo from "../images/zapato.png";
 import { PermissionsAndroid } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+import Modal2 from "./Modal2";
 
 const Publicar = () => {
   /* const [precio, setPrecio] = useState("");
@@ -116,13 +117,24 @@ const handleMultiplePhotos = async () => {
 };
 
 
+  const [isModalVisible, SetIsModalVisible] = useState(false);
+  const [chooseData, SetChooseData] = useState();
+
+  const changeModalVisible = (bool) => {
+    SetIsModalVisible(bool);
+  };
+
+  const setData = (data) => {
+    SetChooseData(data);
+  };
 
   return (
     <View style={styles.fondo} className="h-full relative ">
       <View
         style={styles.principalColor}
-        className="w-screen h-2/3 rounded-br-full  "></View>
-      <View style={styles.main} className="absolute">
+        className="w-screen h-2/3 rounded-br-full  "
+      ></View>
+      <ScrollView style={styles.main} className="absolute">
         <View className="flex flex-row justify-between items-center">
           <View className="border-2 rounded-lg border-zinc-400 bg-slate-400 p-3">
             <Image style={{ height: 100, width: 100 }} source={inputs.fotos ? {uri: inputs?.fotos[0]} : logo} />
@@ -145,7 +157,8 @@ const handleMultiplePhotos = async () => {
           <View className="flex justify-center items-center mt-5">
             <View
               style={{ backgroundColor: "#9874BA" }}
-              className="rounded-lg p-2 flex ">
+              className="rounded-lg p-2 flex "
+            >
               <View className="flex  flex-row justify-between gap-x-10 my-1 ">
                 <Text className="text-gray-300 text-base font-bold">
                   Producto
@@ -215,8 +228,44 @@ const handleMultiplePhotos = async () => {
               placeholder="Nuevo un solo dueno, lo vento por falta de dinero"
             />
           </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => changeModalVisible(true)}
+              style={{
+                backgroundColor: "#3d2851",
+                borderRadius: 20,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "50%",
+                height: 40,
+                shadowOpacity: 0.17,
+                shadowRadius: 2.54,
+                elevation: 3,
+                marginTop: 10,
+              }}
+            >
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+              >
+                Publicar
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Modal
+            transparent={true}
+            animationType="fade"
+            visible={isModalVisible}
+            nRequestClose={() => changeModalVisible(false)}
+          >
+            <Modal2 changeModalVisible={changeModalVisible} setData={setData} />
+          </Modal>
         </View>
-      </View>
+      </ScrollView>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.modalView}>
           <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleImagesFromLibrary}>
