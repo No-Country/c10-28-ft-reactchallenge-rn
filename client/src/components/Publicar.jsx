@@ -269,10 +269,10 @@ const handleMultiplePhotos = async () => {
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.modalView}>
           <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleImagesFromLibrary}>
-            <Text className="text-lg text-white p-2 font-semibold">Elegir de la galeria</Text>
+            <Text className="text-lg text-white p-2 font-semibold">Elegir de galeria</Text>
             </TouchableOpacity>
           <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleMultiplePhotos}>
-            <Text  className="text-lg text-white p-1 font-semibold">Toamr fotos</Text>
+            <Text  className="text-lg text-white p-1 font-semibold">Toamar fotos</Text>
             </TouchableOpacity>
           <TouchableOpacity style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={hideModal}>
             <Text  className="text-lg text-white p-1 font-semibold">Cancelar</Text>
