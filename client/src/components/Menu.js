@@ -113,6 +113,15 @@ const Menu = ({ children }) => {
             CERRAR
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonCerrar}
+          className="rounded-3xl  px-8 "
+          onPress={() => navigation.navigate('Publicar')}
+        >
+          <Text className="font-bold " style={styles.text}>
+            PUBLICA +
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

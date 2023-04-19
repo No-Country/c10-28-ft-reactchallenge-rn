@@ -49,6 +49,7 @@ const data = {
           style={styles.input}
           onChangeText={setEmail}
           value={email}
+          autoCapitalize="none"
           placeholder="Correo electrónico"
         />
         <TextInput
