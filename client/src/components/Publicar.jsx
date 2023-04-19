@@ -12,32 +12,110 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Botons from "./Botons";
 import logo from "../images/zapato.png";
+import { PermissionsAndroid } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+
 import Modal2 from "./Modal2";
 
 const Publicar = () => {
-  const [precio, setPrecio] = useState("");
+  /* const [precio, setPrecio] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [check, setCheck] = useState(true);
   const [servicio, setServicio] = useState(true);
   const [venta, setVenta] = useState(true);
-  const [trueque, setTrueque] = useState(true);
+  const [trueque, setTrueque] = useState(true); */
   const alerta = () => {
     alert("Agrega una foto");
   };
+  const [inputs, setInputs] = useState({
+    precio: '',
+    title: '',
+    description: '',
+    fotos: [],
+    check: true,
+    servicio: true,
+    venta: true,
+    trueque: true,
+  })
 
   const marked = () => {
-    setCheck(!check);
+    setInputs({...inputs, check: !check})
   };
   const marked2 = () => {
-    setServicio(!servicio);
+    setInputs({...inputs, servicio:!servicio});
   };
   const marked3 = () => {
-    setVenta(!venta);
+    setInputs({...inputs, venta:!venta});
   };
   const marked4 = () => {
-    setTrueque(!trueque);
+    setInputs({...inputs, trueque:!trueque});
   };
+
+
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+  
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+  
+  
+    
+  
+
+  const handleImagesFromLibrary = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true,
+ 
+  aspect: [4, 3],
+  quality: 1,
+  allowsEditing: false
+      });
+  
+      if (!result.canceled) {
+        setInputs({ ...inputs, fotos: result.assets.map(asset => asset.uri) });
+        console.log(result.assets.map(asset => asset.uri));
+      }
+    } catch (err) {
+      console.log('Error: ', err);
+    }
+  };  
+ 
+  
+  
+  
+  
+
+console.log('media',inputs.fotos)
+
+const handleMultiplePhotos = async () => {
+  const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+  if (!granted) {
+    alert('Permission to access camera is required!');
+    return;
+  }
+
+  const result = await ImagePicker.launchCameraAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsMultipleSelection: true,
+    aspect: [4, 3],
+    quality: 1, 
+    allowsEditing: true,
+    maxCount: 5, // <-- aquí se establece el número máximo de fotos
+  });
+
+  if (!result.canceled) {
+    setInputs({...inputs, fotos: result.assets.map(asset => asset.uri) });
+  }
+};
+
 
   const [isModalVisible, SetIsModalVisible] = useState(false);
   const [chooseData, SetChooseData] = useState();
@@ -59,7 +137,7 @@ const Publicar = () => {
       <ScrollView style={styles.main} className="absolute">
         <View className="flex flex-row justify-between items-center">
           <View className="border-2 rounded-lg border-zinc-400 bg-slate-400 p-3">
-            <Image style={{ height: 100, width: 100 }} source={logo} />
+            <Image style={{ height: 100, width: 100 }} source={inputs.fotos ? {uri: inputs?.fotos[0]} : logo} />
           </View>
           <Botons
             bgBotton={"#9874BA"}
@@ -69,7 +147,7 @@ const Publicar = () => {
             altura={40}
             size={28}
             title={"Agregar imagen"}
-            navegar={"Camara"}
+            onPress={showModal}
           />
         </View>
         <View className="bg-slate-200 mt-5 p-3 rounded-lg">
@@ -87,7 +165,7 @@ const Publicar = () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked}>
-                    <Text> {check ? "✔️" : ""} </Text>
+                    <Text> {inputs.check ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -97,7 +175,7 @@ const Publicar = () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked2}>
-                    <Text> {servicio ? "✔️" : ""} </Text>
+                    <Text> {inputs.servicio ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -105,7 +183,7 @@ const Publicar = () => {
                 <Text className="text-gray-300 text-base font-bold">Venta</Text>
                 <View className="border-2 bg-slate-300  ">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked3}>
-                    <Text> {venta ? "✔️" : ""} </Text>
+                    <Text> {inputs.venta ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -115,7 +193,7 @@ const Publicar = () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked4}>
-                    <Text> {trueque ? "✔️" : ""} </Text>
+                    <Text> {inputs.trueque ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -125,8 +203,8 @@ const Publicar = () => {
             <Text className="text-xl text-black font-bold">Precio: $</Text>
             <TextInput
               className="bg-slate-100 border-2 rounded-lg border-slate-100 p-2 "
-              onChangeText={setPrecio}
-              value={precio}
+              onChangeText={(text) => setInputs({...inputs, precio: text})}
+              value={inputs.precio}
               placeholder="$10.00"
             />
           </View>
@@ -136,8 +214,8 @@ const Publicar = () => {
             </Text>
             <TextInput
               className="bg-slate-100 border-2 rounded-lg mt-3 border-slate-100 p-2 "
-              onChangeText={setTitle}
-              value={title}
+              onChangeText={(text) => setInputs({...inputs, title: text})}
+              value={inputs.title}
               placeholder="Zapatos Nike"
             />
           </View>
@@ -145,8 +223,8 @@ const Publicar = () => {
             <Text className="text-xl text-black font-bold">Descripcion</Text>
             <TextInput
               className="bg-slate-100 border-2 mt-3 rounded-lg border-slate-100 p-7 "
-              onChangeText={setDescription}
-              value={description}
+              onChangeText={(text) => setInputs({...inputs, description: text})}
+              value={inputs.description}
               placeholder="Nuevo un solo dueno, lo vento por falta de dinero"
             />
           </View>
@@ -188,6 +266,20 @@ const Publicar = () => {
           </Modal>
         </View>
       </ScrollView>
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <View style={styles.modalView}>
+          <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleImagesFromLibrary}>
+            <Text className="text-lg text-white p-2 font-semibold">Elegir de galeria</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleMultiplePhotos}>
+            <Text  className="text-lg text-white p-1 font-semibold">Toamar fotos</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={hideModal}>
+            <Text  className="text-lg text-white p-1 font-semibold">Cancelar</Text>
+            </TouchableOpacity>
+         
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -206,5 +298,23 @@ const styles = StyleSheet.create({
     left: "6%",
     width: "87%",
     height: "90%",
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#3d2851",
+    borderRadius: 20,
+    padding: 35,
+    position: 'absolute',
+    bottom: 0,
+    left: 60,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 200,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
