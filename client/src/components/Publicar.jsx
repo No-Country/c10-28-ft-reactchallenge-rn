@@ -33,23 +33,23 @@ const Publicar = () => {
     title: '',
     description: '',
     fotos: [],
-    check: true,
-    servicio: true,
-    venta: true,
-    trueque: true,
+    check: false,
+    servicio: false,
+    venta: false,
+    trueque: false,
   })
 
   const marked = () => {
-    setInputs({...inputs, check: !check})
+    setInputs({...inputs, check: !inputs.check})
   };
   const marked2 = () => {
-    setInputs({...inputs, servicio:!servicio});
+    setInputs({...inputs, servicio:!inputs.servicio});
   };
   const marked3 = () => {
-    setInputs({...inputs, venta:!venta});
+    setInputs({...inputs, venta:!inputs.venta});
   };
   const marked4 = () => {
-    setInputs({...inputs, trueque:!trueque});
+    setInputs({...inputs, trueque:!inputs.trueque});
   };
 
 
@@ -93,7 +93,6 @@ const Publicar = () => {
   
   
 
-console.log('media',inputs.fotos)
 
 const handleMultiplePhotos = async () => {
   const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -127,7 +126,6 @@ const handleMultiplePhotos = async () => {
   const setData = (data) => {
     SetChooseData(data);
   };
-
   return (
     <View style={styles.fondo} className="h-full relative ">
       <View
@@ -137,7 +135,7 @@ const handleMultiplePhotos = async () => {
       <ScrollView style={styles.main} className="absolute">
         <View className="flex flex-row justify-between items-center">
           <View className="border-2 rounded-lg border-zinc-400 bg-slate-400 p-3">
-            <Image style={{ height: 100, width: 100 }} source={inputs.fotos ? {uri: inputs?.fotos[0]} : logo} />
+            <Image style={{ height: 100, width: 100 }} source={inputs.fotos[0] ? {uri: inputs?.fotos[0]} : logo} />
           </View>
           <Botons
             bgBotton={"#9874BA"}
