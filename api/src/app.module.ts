@@ -10,6 +10,7 @@ import { User } from './users/entities/user.entity';
 import { ReviewsModule } from './reviews/reviews.module';
 import { Review } from './reviews/entities/review.entity';
 import { AuthModule } from './auth/auth.module';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRoot({
@@ -17,7 +18,7 @@ import { AuthModule } from './auth/auth.module';
     url: process.env.DATABASE_URL,
     entities: [Post, User, Review],
     synchronize: true
-  }), PostsModule, UsersModule, ReviewsModule, AuthModule],
+  }), PostsModule, UsersModule, ReviewsModule, AuthModule, MessagesModule],
   controllers: [AppController],
   providers: [AppService],
 })
