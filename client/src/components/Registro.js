@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -31,6 +31,17 @@ const Registro = () => {
       console.error(error);
     }
   };
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: '#3D2851',
+       
+        elevation: 0
+      },
+      headerTintColor: 'white',
+    });
+  }, []);
+
 
   const handleRegister = () => {
     const userData = {

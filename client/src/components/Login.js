@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -19,6 +19,18 @@ const data = {
   username: email,
   password: password
 }
+
+useEffect(() => {
+  navigation.setOptions({
+    headerStyle: {
+      backgroundColor: '#3D2851',
+      
+      elevation: 0
+    },
+    headerTintColor: 'white',
+  });
+}, []);
+
   const handleLogin = () => {
     // Lógica para iniciar sesión
     dispatch(getLogin(data))
