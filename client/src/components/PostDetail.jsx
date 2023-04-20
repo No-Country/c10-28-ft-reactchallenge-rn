@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import React from "react";
 import DetailsImage from "./DetailsImage";
+import { useNavigation } from "@react-navigation/native";
 
 const PostDetail = ({ data }) => {
+  const navigation = useNavigation();
 
   return (
     <View
@@ -21,13 +23,31 @@ const PostDetail = ({ data }) => {
         paddingRight: 10,
         borderRadius: 8,
         margin: 10,
-      }}>
-        <View style={{ with: '100%', backgroundColor: '#eae0f4', borderRadius: 50, position: 'absolute', alignItems: 'flex-end', top: 25, right: 60 }}>
-        <Text style={{color: 'black', margin: 10, fontSize: 20, fontFamily:'roboto-bold'}} >
+      }}
+    >
+      <View
+        style={{
+          with: "100%",
+          backgroundColor: "#eae0f4",
+          borderRadius: 50,
+          position: "absolute",
+          alignItems: "flex-end",
+          top: 25,
+          right: 60,
+        }}
+      >
+        <Text
+          style={{
+            color: "black",
+            margin: 10,
+            fontSize: 20,
+            fontFamily: "roboto-bold",
+          }}
+        >
           {data.precio}
-          </Text>
-          </View>
-      
+        </Text>
+      </View>
+
       <View>
         <TouchableOpacity
           style={{
@@ -43,7 +63,8 @@ const PostDetail = ({ data }) => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}>
+          }}
+        >
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Editar
           </Text>
@@ -62,35 +83,38 @@ const PostDetail = ({ data }) => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}>
+          }}
+        >
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
             Eliminar
           </Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#eae0f4",
-                borderRadius: 10,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 8,
-                width: "95%",
-                marginTop: 50,
-                marginBottom: 50,
-              }}>
-              <Text
-                style={{
-                  color: "#000",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}>
-                {data.titulo}
-              </Text>
-            </TouchableOpacity>
-            
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#eae0f4",
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 8,
+            width: "95%",
+            marginTop: 25,
+            marginBottom: 15,
+          }}
+        >
+          <Text
+            style={{
+              color: "#000",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            {data.titulo}
+          </Text>
+        </TouchableOpacity>
+
         {/* <Image
           style={{
             borderRadius: 10,
@@ -105,66 +129,88 @@ const PostDetail = ({ data }) => {
               : require("../images/Image.jpg")
           }
         /> */}
-        <View style={{ borderRadius: 12, alignItems: 'center', height: 400, width:400}}>
-        <DetailsImage data={data.fotos} />
+        <View
+          style={{
+            borderRadius: 12,
+            alignItems: "center",
+            height: 400,
+            width: 400,
+          }}
+        >
+          <DetailsImage data={data.fotos} />
         </View>
 
         <View
-        style={{
-          justifyContent: "flex-end",
-          flexDirection: "row",
-          width: "100%",
-        }}>
-          {
-            data.venta ? 
-        <TouchableOpacity
+          className="flex flex-row justify-center"
           style={{
-            backgroundColor: "#9874BA",
-            borderRadius: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 5,
-            marginLeft: 5,
-            marginRight: 5,
-            marginBottom: 5,
-            width: "30%",
-            shadowOpacity: 0.17,
-            shadowRadius: 2.54,
-            elevation: 3,
-          }}>
-          <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Compra
-          </Text>
-        </TouchableOpacity>
-          : ''
-        }
-        {
-          data.trueque ?
-        <TouchableOpacity
+            width: "100%",
+          }}
+        >
+          {data.venta ? (
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#9874BA",
+                borderRadius: 20,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 5,
+                marginLeft: 5,
+                marginRight: 5,
+                marginBottom: 5,
+                width: "30%",
+                shadowOpacity: 0.17,
+                shadowRadius: 2.54,
+                elevation: 3,
+              }}
+            >
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+              >
+                Compra
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            ""
+          )}
+          {data.trueque ? (
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#9874BA",
+                borderRadius: 20,
+                justifyContent: "center",
+                alignItems: "center",
+                margin: 5,
+                width: "30%",
+                shadowOpacity: 0.17,
+                shadowRadius: 2.54,
+                elevation: 3,
+              }}
+            >
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+              >
+                Trueque
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            ""
+          )}
+        </View>
+
+        <Text
           style={{
-            backgroundColor: "#9874BA",
-            borderRadius: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 5,
-            width: "30%",
-            shadowOpacity: 0.17,
-            shadowRadius: 2.54,
-            elevation: 3,
-          }}>
-          <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Trueque
-          </Text>
-        </TouchableOpacity>
-          : ''
-            }
+            color: "black",
+            margin: 10,
+            fontSize: 15,
+            fontFamily: "roboto-regular",
+          }}
+        >
+          {data.descripcion}
+        </Text>
+        <Text className="font-semibold">Condiciones de intercambio:</Text>
+        <Text>{data.condiciones_intercambio}</Text>
       </View>
-        
-          <Text style={{color: 'black', margin: 10, fontSize: 15, fontFamily:'roboto-regular'}} >
-            {data.descripcion}
-          </Text>
-      </View>
-      <TextInput
+      {/* <TextInput
         multiline={true}
         numberOfLines={4}
         placeholder={"Ingrese su texto..."}
@@ -179,8 +225,9 @@ const PostDetail = ({ data }) => {
           elevation: 3,
           marginBottom: 10,
         }}
-      />
-       <TouchableOpacity
+      /> */}
+      <View className="flex justify-center items-center mb-3">
+        <TouchableOpacity
           style={{
             backgroundColor: "#9874BA",
             borderRadius: 20,
@@ -193,11 +240,14 @@ const PostDetail = ({ data }) => {
             shadowOpacity: 0.17,
             shadowRadius: 2.54,
             elevation: 3,
-          }}>
+          }}
+          onPress={() => navigation.navigate("Chat")}
+        >
           <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Preguntar
+            Chatear
           </Text>
         </TouchableOpacity>
+      </View>
     </View>
   );
 };
