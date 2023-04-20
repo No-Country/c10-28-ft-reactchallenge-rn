@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Cambialo",
-    "slug": "Cambialo",
+    "slug": "cambialo",
     "version": "1.0.0",
     "hostType": "lan",
     "orientation": "portrait",
@@ -25,10 +25,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.cambialo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "96949514-a285-4fd4-8b55-f015d6694d43"
+      }
+    },
+    "owner": "oversightdolo"
   }
 }
