@@ -35,6 +35,22 @@ export const getPost = () => {
   };
 };
 
+export const newPost = (data) => {
+  
+  return async(dispatch) => {
+  try {
+   const post =  await axios.post(`https://cambialoapi-production.up.railway.app/posts/`,data );
+   
+  } catch (error) {
+    
+    return dispatch({
+      type: ERROR,
+      payload: error,
+    });
+  }
+}
+}
+
 export const getType = (postType) => {
   return async (dispatch) => {
     try {
@@ -60,7 +76,7 @@ export const getType = (postType) => {
 export const searchBar = (data) => {
   return async (dispatch) => {
     try {
-      console.log(data);
+      
       const search = await axios.get(
         `https://cambialoapi-production.up.railway.app/posts?search=${data}`
       );
@@ -86,7 +102,7 @@ export const productUser = (id) => {
         `https://cambialoapi-production.up.railway.app/posts?vendedor=${id}`
       );
       dispatch({ type: SET_LOADING, payload: false });
-      console.log("action", postUser.data);
+      
       return dispatch({
         type: PRODUCT_USER,
         payload: postUser.data,
@@ -134,7 +150,7 @@ export const getCategory = (data) => {
       );
       dispatch({ type: SET_LOADING, payload: false });
 
-      console.log("cate", response.data);
+      
       return dispatch({
         type: GET_CATEGORY_FILTER,
         payload: response.data,
@@ -159,7 +175,7 @@ export const getReviews = (data) => {
       );
       dispatch({ type: SET_LOADING, payload: false });
 
-      console.log("review", response.data);
+      
       return dispatch({
         type: GET_REVIEWS,
         payload: response.data,
@@ -175,7 +191,7 @@ export const getReviews = (data) => {
 };
 
 export const getLogin = (data) => {
-  console.log("loginaction", data);
+  
   return async (dispatch) => {
     try {
       const login = await axios.post(

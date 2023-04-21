@@ -9,10 +9,12 @@ import {
 import React from "react";
 import DetailsImage from "./DetailsImage";
 import { useNavigation } from "@react-navigation/native";
+import {useSelector} from "react-redux";
 
 const PostDetail = ({ data }) => {
   const navigation = useNavigation();
-
+  const user = useSelector(state => state.user.user)
+console.log(data.vendedor_id.user_id === user.user_id)
   return (
     <View
       style={{
@@ -49,6 +51,9 @@ const PostDetail = ({ data }) => {
       </View>
 
       <View>
+        {
+          data.vendedor_id.user_id === user.user_id ?
+          <>
         <TouchableOpacity
           style={{
             backgroundColor: "#27B90F",
@@ -89,6 +94,12 @@ const PostDetail = ({ data }) => {
             Eliminar
           </Text>
         </TouchableOpacity>
+        </>
+        : 
+        <View className="h-16 mb-2">
+
+        </View>
+      }
       </View>
 
       <View style={{ alignItems: "center", marginBottom: 20 }}>
