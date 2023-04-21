@@ -39,7 +39,6 @@ const Menu = ({ children }) => {
     React.useCallback(() => {
       const unsubscribe = navigation.addListener("state", (event) => {
         const ind = event.data.state?.index;
-        console.log(ind);
         setCurrentScreen(ind);
       });
 
@@ -48,7 +47,6 @@ const Menu = ({ children }) => {
   );
 
   useEffect(() => {}, [navigation, currentScreen]);
-  console.log(currentScreen);
   const openDrawer = () => {
     drawer.current.openDrawer();
     setIsDrawerOpen(true);
@@ -77,25 +75,34 @@ const Menu = ({ children }) => {
       <View style={{ backgroundColor: "#3D2851" }} className="p-5">
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Perfil", user.user.user_id)}
+          onPress={() => {
+            navigation.navigate("Perfil", user.user.user_id);
+            closeDrawer();
+          }}
         >
           <Text style={styles.text}>Mi Perfil</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Acercade")}
+          onPress={() => {
+            navigation.navigate("Acercade");
+            closeDrawer();
+          }}
         >
           <Text style={styles.text}>Acerca de Cambialo</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Contacto")}
+          onPress={() => {
+            navigation.navigate("Contacto");
+            closeDrawer();
+          }}
         >
           <Text style={styles.text}>Contacto</Text>
         </TouchableOpacity>
-        <View style={styles.button}>
+        {/* <View style={styles.button}>
           <Filtros />
-        </View>
+        </View> */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => dispatch(logout())}
@@ -115,8 +122,11 @@ const Menu = ({ children }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonCerrar}
-          className="rounded-3xl  px-8 "
-          onPress={() => navigation.navigate('Publicar')}
+          className="rounded-3xl px-8 mt-3"
+          onPress={() => {
+            navigation.navigate("Publicar");
+            closeDrawer();
+          }}
         >
           <Text className="font-bold " style={styles.text}>
             PUBLICA +

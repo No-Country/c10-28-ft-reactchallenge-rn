@@ -56,17 +56,15 @@ const ProductsHeaders = ({ data }) => {
   };
 
   return (
-    <View className="flex flex-row  justify-evenly items-center ">
-      <View className="">
-        <View className=" rounded-full overflow-hidden bg-purple-800  border-purple-400 border-8">
-          <Image
-            style={{ height: 100, width: 100 }}
-            source={{ uri: foto_perfil }}
-          />
-        </View>
+    <View className="flex flex-row justify-between items-center ">
+      <View className="rounded-full overflow-hidden bg-purple-800  border-purple-400 border-8">
+        <Image
+          style={{ height: 125, width: 125 }}
+          source={{ uri: foto_perfil }}
+        />
       </View>
       <View>
-        <View className="flex items-end ">
+        <View className="flex items-end">
           <Botons
             icon={"heart"}
             color={like ? "#f1f1f1" : "red"}
@@ -74,11 +72,11 @@ const ProductsHeaders = ({ data }) => {
             onPress={likeHeart}
           />
         </View>
-        <View className="flex flex-row ml-2 m-3 ">
+        <View className="">
           <Start promedio={calificacionPromedio} />
         </View>
         <View className="flex items-end ">
-          <Text className="font-bold text-lg -mt-4  text-zinc-100 ">
+          <Text className="font-bold text-lg mt-4  text-zinc-100 ">
             {nombre_completo}
           </Text>
           <Text className="text-base text-zinc-100">{direccion}</Text>

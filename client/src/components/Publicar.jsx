@@ -12,12 +12,12 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Botons from "./Botons";
 import logo from "../images/zapato.png";
-import { PermissionsAndroid } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import {useDispatch, useSelector } from 'react-redux'
+import { PermissionsAndroid } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { useDispatch, useSelector } from "react-redux";
 
 import Modal2 from "./Modal2";
-import {newPost} from "../redux/action";
+import { newPost } from "../redux/action";
 
 const Publicar = () => {
   /* const [precio, setPrecio] = useState("");
@@ -30,24 +30,25 @@ const Publicar = () => {
   const alerta = () => {
     alert("Agrega una foto");
   };
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user.user)
-  const [inputs, setInputs] = useState({
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
+  const formData = {
     vendedor_id: user.user_id,
-    precio:  '',
-    titulo: '',
-    descripcion: '',
-    condiciones_intercambio: ' ',
-    categoria: ' ',
+    precio: "",
+    titulo: "",
+    descripcion: "",
+    condiciones_intercambio: " ",
+    categoria: " ",
     fotos: [],
-    tipo: ' ',
+    tipo: " ",
     venta: false,
-    trueque: false,
+    trueque: true,
     disponible: true,
+  };
 
-  })
+  const [inputs, setInputs] = useState(formData);
 
-  
   const handleTipoChange = (tipo) => {
     setInputs((prevInputs) => ({
       ...prevInputs,
@@ -56,96 +57,89 @@ const Publicar = () => {
   };
   const handlePost = () => {
     // Comprobar que todos los campos estén completos
-    if (!inputs.precio || !inputs.titulo || !inputs.descripcion || inputs.fotos.length === 0) {
-      alert('Por favor, completa todos los campos.');
+    if (
+      !inputs.precio ||
+      !inputs.titulo ||
+      !inputs.descripcion ||
+      inputs.fotos.length === 0
+    ) {
+      alert("Por favor, completa todos los campos.");
       return;
     }
-  
+
     // Dispatch de la acción newPost
     dispatch(newPost(inputs));
-    changeModalVisible(true)
+    changeModalVisible(true);
+    setInputs(formData);
   };
-  
-
 
   const marked = () => {
-    handleTipoChange('producto')
+    handleTipoChange("producto");
   };
   const marked2 = () => {
-    handleTipoChange('servicio');
+    handleTipoChange("servicio");
   };
   const marked3 = () => {
-    setInputs({...inputs, venta:!inputs.venta});
+    setInputs({ ...inputs, venta: !inputs.venta });
   };
   const marked4 = () => {
-    setInputs({...inputs, trueque:!inputs.trueque});
+    setInputs({ ...inputs, trueque: !inputs.trueque });
   };
-
-
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const showModal = () => {
     setModalVisible(true);
   };
-  
+
   const hideModal = () => {
     setModalVisible(false);
   };
-  
-  
-    
-  
 
   const handleImagesFromLibrary = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsMultipleSelection: true,
- 
-  aspect: [4, 3],
-  quality: 1,
-  allowsEditing: false
+
+        aspect: [4, 3],
+        quality: 1,
+        allowsEditing: false,
       });
-  
+
       if (!result.canceled) {
-        setInputs({ ...inputs, fotos: result.assets.map(asset => asset.uri) });
-        hideModal()
-        console.log(result.assets.map(asset => asset.uri));
+        setInputs({
+          ...inputs,
+          fotos: result.assets.map((asset) => asset.uri),
+        });
+        hideModal();
       }
     } catch (err) {
-      console.log('Error: ', err);
+      console.log("Error: ", err);
     }
-  };  
- 
-  
-  
-  
-  
+  };
 
+  const handleMultiplePhotos = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) {
+      alert("Permission to access camera is required!");
+      return;
+    }
 
-const handleMultiplePhotos = async () => {
-  const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-  if (!granted) {
-    alert('Permission to access camera is required!');
-    return;
-  }
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true,
+      aspect: [4, 3],
+      quality: 1,
+      allowsEditing: true,
+      maxCount: 5, // <-- aquí se establece el número máximo de fotos
+    });
 
-  const result = await ImagePicker.launchCameraAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
-    allowsMultipleSelection: true,
-    aspect: [4, 3],
-    quality: 1, 
-    allowsEditing: true,
-    maxCount: 5, // <-- aquí se establece el número máximo de fotos
-  });
-
-  if (!result.canceled) {
-    setInputs({...inputs, fotos: result.assets.map(asset => asset.uri) });
-    hideModal()
-  }
-};
-
+    if (!result.canceled) {
+      setInputs({ ...inputs, fotos: result.assets.map((asset) => asset.uri) });
+      hideModal();
+    }
+  };
 
   const [isModalVisible, SetIsModalVisible] = useState(false);
   const [chooseData, SetChooseData] = useState();
@@ -166,7 +160,10 @@ const handleMultiplePhotos = async () => {
       <ScrollView style={styles.main} className="absolute">
         <View className="flex flex-row justify-between items-center">
           <View className="border-2 rounded-lg border-zinc-400 bg-slate-400 p-3">
-            <Image style={{ height: 100, width: 100 }} source={inputs.fotos[0] ? {uri: inputs?.fotos[0]} : logo} />
+            <Image
+              style={{ height: 100, width: 100 }}
+              source={inputs.fotos[0] ? { uri: inputs?.fotos[0] } : logo}
+            />
           </View>
           <Botons
             bgBotton={"#9874BA"}
@@ -186,7 +183,7 @@ const handleMultiplePhotos = async () => {
           <View className="flex justify-center items-center mt-5">
             <View
               style={{ backgroundColor: "#9874BA" }}
-              className="rounded-lg p-2 flex "
+              className="rounded-lg p-2 flex mb-3 "
             >
               <View className="flex  flex-row justify-between gap-x-10 my-1 ">
                 <Text className="text-gray-300 text-base font-bold">
@@ -194,7 +191,7 @@ const handleMultiplePhotos = async () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked}>
-                    <Text> {inputs.tipo === 'producto' ? "✔️" : ""} </Text>
+                    <Text> {inputs.tipo === "producto" ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -204,7 +201,7 @@ const handleMultiplePhotos = async () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked2}>
-                    <Text> {inputs.tipo === 'servicio' ? "✔️" : ""} </Text>
+                    <Text> {inputs.tipo === "servicio" ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -228,35 +225,57 @@ const handleMultiplePhotos = async () => {
               </View>
             </View>
           </View>
-          <View className="flex flex-row my-5 gap-x-3  items-center">
-            <Text className="text-xl text-black font-bold">Precio: $</Text>
-            <TextInput
-              className="bg-slate-100 border-2 rounded-lg border-slate-100 p-2 "
-              onChangeText={(text) => setInputs({...inputs, precio: text})}
-              value={inputs.precio}
-              placeholder="$10.00"
-            />
-          </View>
-          <View className="flex  gap-x-3">
+          {inputs.venta ? (
+            <View className="flex flex-row my-5 gap-x-3 items-center justify-center">
+              <Text className="text-xl text-black font-bold">Precio: $</Text>
+              <TextInput
+                className="bg-slate-100 border-2 rounded-lg border-slate-100 p-2 "
+                onChangeText={(text) => setInputs({ ...inputs, precio: text })}
+                value={inputs.precio}
+                placeholder="0.00"
+              />
+            </View>
+          ) : null}
+          <View>
             <Text className="text-xl text-black font-bold">
               Titulo de la publicacion
             </Text>
             <TextInput
-              className="bg-slate-100 border-2 rounded-lg mt-3 border-slate-100 p-2 "
-              onChangeText={(text) => setInputs({...inputs, titulo: text})}
+              className="bg-slate-100 border-2 rounded-lg border-slate-100 p-2 "
+              onChangeText={(text) => setInputs({ ...inputs, titulo: text })}
               value={inputs.titulo}
-              placeholder="Zapatos Nike"
+              placeholder="Mi producto o servicio..."
             />
           </View>
-          <View className="flex  my-5 gap-x-3">
+          <View>
             <Text className="text-xl text-black font-bold">Descripcion</Text>
             <TextInput
-              className="bg-slate-100 border-2 mt-3 rounded-lg border-slate-100 p-7 "
-              onChangeText={(text) => setInputs({...inputs, descripcion: text})}
+              className="bg-slate-100 border-2 mt-1 rounded-lg border-slate-100 p-2 "
+              onChangeText={(text) =>
+                setInputs({ ...inputs, descripcion: text })
+              }
               value={inputs.descripcion}
-              placeholder="Nuevo un solo dueño, lo vendo por falta de dinero"
+              placeholder="Breve descripción de mi producto o servicio..."
+              multiline={true}
+              numberOfLines={3}
             />
           </View>
+          {inputs.trueque ? (
+            <View>
+              <Text className="text-xl text-black font-bold">
+                Condiciones de intercambio
+              </Text>
+              <TextInput
+                className="bg-slate-100 border-2 mt-1 rounded-lg border-slate-100 p-2 "
+                onChangeText={(text) =>
+                  setInputs({ ...inputs, condiciones_intercambio: text })
+                }
+                value={inputs.condiciones_intercambio}
+                placeholder="Cambio por..."
+              />
+            </View>
+          ) : null}
+
           <View
             style={{
               justifyContent: "center",
@@ -297,16 +316,30 @@ const handleMultiplePhotos = async () => {
       </ScrollView>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.modalView}>
-          <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleImagesFromLibrary}>
-            <Text className="text-lg text-white p-2 font-semibold">Elegir de galeria</Text>
-            </TouchableOpacity>
-          <TouchableOpacity style={{ margin:3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={handleMultiplePhotos}>
-            <Text  className="text-lg text-white p-1 font-semibold">Toamar fotos</Text>
-            </TouchableOpacity>
-          <TouchableOpacity style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }} onPress={hideModal}>
-            <Text  className="text-lg text-white p-1 font-semibold">Cancelar</Text>
-            </TouchableOpacity>
-         
+          <TouchableOpacity
+            style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }}
+            onPress={handleImagesFromLibrary}
+          >
+            <Text className="text-lg text-white p-2 font-semibold">
+              Elegir de galeria
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }}
+            onPress={handleMultiplePhotos}
+          >
+            <Text className="text-lg text-white p-1 font-semibold">
+              Toamar fotos
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ margin: 3, borderRadius: 8, backgroundColor: "#9874BA" }}
+            onPress={hideModal}
+          >
+            <Text className="text-lg text-white p-1 font-semibold">
+              Cancelar
+            </Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </View>
@@ -333,11 +366,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#3d2851",
     borderRadius: 20,
     padding: 35,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 60,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 200,
       height: 2,

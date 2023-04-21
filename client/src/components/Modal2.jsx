@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -11,21 +12,29 @@ const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 150;
 
 const Modal2 = (props) => {
+  const navigation = useNavigation();
+
   closeModal = (bool, data) => {
     props.changeModalVisible(bool);
     props.setData(data);
+    navigation.goBack();
   };
 
   return (
     <TouchableOpacity disabled={true} style={styles.container}>
-      <View style={styles.modal}>
+      <View style={styles.modal} className="flex justify-center items-center">
         <Text style={styles.text}>Publicación creada con éxito</Text>
         <View style={styles.btnView}>
           <TouchableOpacity
             style={styles.touchableOpacity}
             onPress={() => closeModal(false, "Ok")}
           >
-            <Text style={[styles.text, { color: "blue" }]}>Ok</Text>
+            <Text
+              className="text-white bg-[#3D2851] py-3 px-8 rounded-md"
+              style={[styles.text]}
+            >
+              Ok
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -47,7 +56,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   text: {
-    marginTop: 20,
     textAlign: "center",
     fontSize: 16,
     fontWeight: "bold",
@@ -55,7 +63,6 @@ const styles = StyleSheet.create({
   btnView: {
     width: "100%",
     flexDirection: "row",
-    marginTop: 30,
   },
   touchableOpacity: {
     flex: 1,

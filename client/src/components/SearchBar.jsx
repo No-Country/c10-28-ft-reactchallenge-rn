@@ -20,6 +20,7 @@ const SearchBar = ({ onChangeText }) => {
 
   const search = () => {
     dispatch(searchBar(searchText));
+    setSearchText("");
 
     navigation.navigate("Publicaciones", "Resultados de búsqueda");
   };

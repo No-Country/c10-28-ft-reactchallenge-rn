@@ -21,13 +21,11 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const scrollViewRef = useRef();
 
-  
-
   useEffect(() => {
     scrollViewRef.current.scrollToEnd({ animated: true });
     const messageListener = (message) => {
       setMessages((current) => [...current, message]);
-    }; 
+    };
 
     socket.on("message", messageListener);
 
@@ -43,11 +41,13 @@ const Chat = () => {
         className="w-screen h-2/3 rounded-br-full "
       ></View>
       <View style={styles.chatView} className="bg-slate-300 rounded-xl p-5  ">
-        <View style={{ height: "75%"}}>
-          <ScrollView ref={scrollViewRef} className="p-4  bg-slate-100 rounded-lg flex">
+        <View style={{ height: "75%" }}>
+          <ScrollView
+            ref={scrollViewRef}
+            className="p-4  bg-slate-100 rounded-lg flex"
+          >
             <View className="pb-16">
-
-            <Messages key={messages.userId} messages={messages} user={loggedUser} />
+              <Messages messages={messages} user={loggedUser} />
             </View>
             {/* <View className="flex gap-4 ">
             <View className="flex items-start ">
