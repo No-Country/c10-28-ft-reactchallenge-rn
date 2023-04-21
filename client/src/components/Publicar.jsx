@@ -14,8 +14,10 @@ import Botons from "./Botons";
 import logo from "../images/zapato.png";
 import { PermissionsAndroid } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import {useDispatch, useSelector } from 'react-redux'
 
 import Modal2 from "./Modal2";
+import {newPost} from "../redux/action";
 
 const Publicar = () => {
   /* const [precio, setPrecio] = useState("");
@@ -28,22 +30,49 @@ const Publicar = () => {
   const alerta = () => {
     alert("Agrega una foto");
   };
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user.user)
   const [inputs, setInputs] = useState({
-    precio: '',
-    title: '',
-    description: '',
+    vendedor_id: user.user_id,
+    precio:  '',
+    titulo: '',
+    descripcion: '',
+    condiciones_intercambio: ' ',
+    categoria: ' ',
     fotos: [],
-    check: false,
-    servicio: false,
+    tipo: ' ',
     venta: false,
     trueque: false,
+    disponible: true,
+
   })
 
+  
+  const handleTipoChange = (tipo) => {
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      tipo,
+    }));
+  };
+  const handlePost = () => {
+    // Comprobar que todos los campos estén completos
+    if (!inputs.precio || !inputs.titulo || !inputs.descripcion || inputs.fotos.length === 0) {
+      alert('Por favor, completa todos los campos.');
+      return;
+    }
+  
+    // Dispatch de la acción newPost
+    dispatch(newPost(inputs));
+    changeModalVisible(true)
+  };
+  
+
+
   const marked = () => {
-    setInputs({...inputs, check: !inputs.check})
+    handleTipoChange('producto')
   };
   const marked2 = () => {
-    setInputs({...inputs, servicio:!inputs.servicio});
+    handleTipoChange('servicio');
   };
   const marked3 = () => {
     setInputs({...inputs, venta:!inputs.venta});
@@ -81,6 +110,7 @@ const Publicar = () => {
   
       if (!result.canceled) {
         setInputs({ ...inputs, fotos: result.assets.map(asset => asset.uri) });
+        hideModal()
         console.log(result.assets.map(asset => asset.uri));
       }
     } catch (err) {
@@ -112,6 +142,7 @@ const handleMultiplePhotos = async () => {
 
   if (!result.canceled) {
     setInputs({...inputs, fotos: result.assets.map(asset => asset.uri) });
+    hideModal()
   }
 };
 
@@ -163,7 +194,7 @@ const handleMultiplePhotos = async () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked}>
-                    <Text> {inputs.check ? "✔️" : ""} </Text>
+                    <Text> {inputs.tipo === 'producto' ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -173,7 +204,7 @@ const handleMultiplePhotos = async () => {
                 </Text>
                 <View className="border-2 bg-slate-300">
                   <TouchableOpacity style={{ width: 25 }} onPress={marked2}>
-                    <Text> {inputs.servicio ? "✔️" : ""} </Text>
+                    <Text> {inputs.tipo === 'servicio' ? "✔️" : ""} </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -212,8 +243,8 @@ const handleMultiplePhotos = async () => {
             </Text>
             <TextInput
               className="bg-slate-100 border-2 rounded-lg mt-3 border-slate-100 p-2 "
-              onChangeText={(text) => setInputs({...inputs, title: text})}
-              value={inputs.title}
+              onChangeText={(text) => setInputs({...inputs, titulo: text})}
+              value={inputs.titulo}
               placeholder="Zapatos Nike"
             />
           </View>
@@ -221,9 +252,9 @@ const handleMultiplePhotos = async () => {
             <Text className="text-xl text-black font-bold">Descripcion</Text>
             <TextInput
               className="bg-slate-100 border-2 mt-3 rounded-lg border-slate-100 p-7 "
-              onChangeText={(text) => setInputs({...inputs, description: text})}
-              value={inputs.description}
-              placeholder="Nuevo un solo dueno, lo vento por falta de dinero"
+              onChangeText={(text) => setInputs({...inputs, descripcion: text})}
+              value={inputs.descripcion}
+              placeholder="Nuevo un solo dueño, lo vendo por falta de dinero"
             />
           </View>
           <View
@@ -233,7 +264,7 @@ const handleMultiplePhotos = async () => {
             }}
           >
             <TouchableOpacity
-              onPress={() => changeModalVisible(true)}
+              onPress={() => handlePost()}
               style={{
                 backgroundColor: "#3d2851",
                 borderRadius: 20,
