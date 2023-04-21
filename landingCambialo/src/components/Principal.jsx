@@ -1,5 +1,4 @@
 import React from 'react';
-import cell from '../assets/cell.png'
 import home from "../assets/home.jpeg";
 const Principal = () => {
     return (
@@ -28,7 +27,9 @@ const Principal = () => {
           </p>
         </div>
         <div className="container_boton_descarga py-5 ">
-          <button className="boton_descarga">Descargar App</button>
+          <a href="Cambialo.apk" download>
+            <button className="boton_descarga">Descargar App</button>
+          </a>
         </div>
 
         <div className="about description py-5">
