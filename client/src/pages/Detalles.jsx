@@ -21,7 +21,9 @@ const Detalles = ({ route }) => {
       <View style={styles.fondo}>
         <View style={styles.principalColor}></View>
         <ScrollView style={{ flex: 1, position: "absolute", height: "100%" }}>
-          <ProductsHeaders data={data} />
+          <View className="p-6">
+            <ProductsHeaders data={data} />
+          </View>
           <View style={{ height: "80%" }}>
             <PostDetail data={data} />
           </View>
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
   },
   principalColor: {
     backgroundColor: "#3d2851",
-    height: "50%",
+    height: "70%",
     borderBottomRightRadius: 1000,
   },
 });

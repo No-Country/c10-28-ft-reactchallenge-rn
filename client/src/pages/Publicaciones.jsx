@@ -29,7 +29,7 @@ const Publicaciones = ({ route }) => {
   return (
     <View className="px-6 py-2 bg-[#EAE0F4] h-full">
       <View>
-        <Filtros />
+        {/* <Filtros /> */}
         <Text
           style={{
             fontFamily: "roboto-bold",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TextInput,
@@ -12,77 +12,88 @@ import ProductsHeaders from "../components/ProductsHeaders";
 import Botons from "../components/Botons";
 import Carrousel from "../components/Carrousel";
 import ProductUser from "../components/ProductUser";
+import { useSelector } from "react-redux";
+import Featured from "../components/Featured";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Perfil = ({ route }) => {
+  const loggedUser = useSelector((state) => state.user);
   const id = route.params;
+  const [data, setData] = useState();
 
-  return (
-    <View style={styles.fondo} className="h-full relative ">
-      <View
-        style={styles.principalColor}
-        className="w-screen h-2/3 rounded-br-full  "
-      ></View>
-      <View style={styles.main} className="absolute">
-        <View>
-          <View>
-            <ProductsHeaders
-              data={{
-                vendedor_id: {
-                  user_id: 3,
-                  nombre_completo: "Johanna Davis MD",
-                  foto_perfil:
-                    "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/454.jpg",
-                  direccion: "12266 Casey Village",
-                  calificacionPromedio: 4,
-                },
-              }}
-            />
+  useEffect(() => {
+    fetch(
+      `https://cambialoapi-production.up.railway.app/users/${loggedUser.user.user_id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+
+  if (data)
+    return (
+      <View style={styles.fondo} className="h-full">
+        <View
+          style={styles.principalColor}
+          className="w-screen h-2/3 rounded-br-full absolute"
+        ></View>
+
+        <ScrollView>
+          <View style={styles.main}>
+            <View>
+              <View>
+                <ProductsHeaders
+                  data={{
+                    vendedor_id: data,
+                  }}
+                />
+              </View>
+              <View className=" flex items-end mt-4">
+                <Botons
+                  icon={"plus"}
+                  title={"Publicar"}
+                  bgBotton={"#9874BA"}
+                  redondo={10}
+                  size={28}
+                  flex={"row"}
+                  altura={40}
+                  navegar={"Publicar"}
+                />
+              </View>
+            </View>
+            <View>
+              <Text className="text-purple-400 font-bold text-xl">
+                Acerca de mi
+              </Text>
+              <View className="m-3">
+                <Text className="text-gray-50">
+                  {" "}
+                  {/* {descripcion} */}
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
+                  exercitationem autem est maxime deleniti! Vitae amet eius at
+                  temporibus ipsa enim beatae obcaecati, minima sunt pariatur
+                  aut veniam autem reiciendis.{" "}
+                </Text>
+              </View>
+            </View>
+            <View className="pt-3 mb-5">
+              <Text className="text-purple-200 mt-2 font-bold text-xl border-2 border-purple-900 text-center rounded-full bg-purple-900">
+                Mis Publicaciones
+              </Text>
+              <Featured data={data.user_posts} />
+            </View>
+
+            {/* <View>
+              <Text className="text-purple-200 my-2 font-bold text-xl border-2 border-purple-900 text-center rounded-full bg-purple-900">
+                                Servicios que ofrece
+              </Text>
+              <ProductUser />
+            </View> */}
           </View>
-          <View className=" flex items-end m-4">
-            <Botons
-              icon={"plus"}
-              title={"Publicar"}
-              bgBotton={"#9874BA"}
-              redondo={10}
-              size={28}
-              flex={"row"}
-              altura={40}
-              navegar={"Publicar"}
-            />
-          </View>
-        </View>
-        <View>
-          <Text className="text-purple-400 font-bold text-xl">
-            Acerca de mi
-          </Text>
-          <View className="m-3">
-            <Text className="text-gray-50">
-              {" "}
-              {/* {descripcion} */}
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
-              exercitationem autem est maxime deleniti! Vitae amet eius at
-              temporibus ipsa enim beatae obcaecati, minima sunt pariatur aut
-              veniam autem reiciendis.{" "}
-            </Text>
-          </View>
-        </View>
-        <View className="pt-3">
-          <Text className="text-purple-200 my-2 font-bold text-xl border-2 border-purple-900 text-center rounded-full bg-purple-900">
-            {" "}
-            Productos a la venta o trueque
-          </Text>
-          {/* <ProductUser /> */}
-        </View>
-        <View>
-          <Text className="text-purple-200 my-2 font-bold text-xl border-2 border-purple-900 text-center rounded-full bg-purple-900">
-            {" "}
-            Servicios que ofrece
-          </Text>
-          {/* <ProductUser /> */}
-        </View>
+        </ScrollView>
       </View>
-    </View>
-  );
+    );
 };
 
 export default Perfil;

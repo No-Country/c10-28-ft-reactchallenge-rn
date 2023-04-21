@@ -9,98 +9,67 @@ import {
 import React from "react";
 import DetailsImage from "./DetailsImage";
 import { useNavigation } from "@react-navigation/native";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const PostDetail = ({ data }) => {
   const navigation = useNavigation();
-  const user = useSelector(state => state.user.user)
-console.log(data.vendedor_id.user_id === user.user_id)
+  const user = useSelector((state) => state.user.user);
   return (
     <View
       style={{
         backgroundColor: "#ffffff",
         top: 0,
-        paddingTop: 20,
+        paddingTop: 5,
         paddingLeft: 10,
         paddingRight: 10,
         borderRadius: 8,
         margin: 10,
       }}
     >
-      <View
-        style={{
-          with: "100%",
-          backgroundColor: "#eae0f4",
-          borderRadius: 50,
-          position: "absolute",
-          alignItems: "flex-end",
-          top: 25,
-          right: 60,
-        }}
-      >
-        <Text
-          style={{
-            color: "black",
-            margin: 10,
-            fontSize: 20,
-            fontFamily: "roboto-bold",
-          }}
-        >
-          {data.precio}
-        </Text>
-      </View>
-
-      <View>
-        {
-          data.vendedor_id.user_id === user.user_id ?
-          <>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#27B90F",
-            borderRadius: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 5,
-            marginLeft: 5,
-            marginRight: 0,
-            marginBottom: 5,
-            width: "25%",
-            shadowOpacity: 0.17,
-            shadowRadius: 2.54,
-            elevation: 3,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Editar
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#E40303",
-            borderRadius: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 5,
-            marginLeft: 5,
-            marginRight: 5,
-            marginBottom: 5,
-            width: "25%",
-            shadowOpacity: 0.17,
-            shadowRadius: 2.54,
-            elevation: 3,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Eliminar
-          </Text>
-        </TouchableOpacity>
-        </>
-        : 
-        <View className="h-16 mb-2">
-
+      {data.vendedor_id.user_id === user.user_id ? (
+        <View className="flex flex-row justify-center items-center">
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#27B90F",
+              borderRadius: 20,
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 5,
+              marginLeft: 5,
+              marginRight: 0,
+              marginBottom: 5,
+              width: "25%",
+              shadowOpacity: 0.17,
+              shadowRadius: 2.54,
+              elevation: 3,
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+              Editar
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#E40303",
+              borderRadius: 20,
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 5,
+              marginLeft: 5,
+              marginRight: 5,
+              marginBottom: 5,
+              width: "25%",
+              shadowOpacity: 0.17,
+              shadowRadius: 2.54,
+              elevation: 3,
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+              Eliminar
+            </Text>
+          </TouchableOpacity>
         </View>
-      }
-      </View>
+      ) : null}
 
       <View style={{ alignItems: "center", marginBottom: 20 }}>
         <TouchableOpacity
@@ -111,8 +80,8 @@ console.log(data.vendedor_id.user_id === user.user_id)
             alignItems: "center",
             margin: 8,
             width: "95%",
-            marginTop: 25,
-            marginBottom: 15,
+            marginTop: 20,
+            marginBottom: 20,
           }}
         >
           <Text
@@ -120,6 +89,7 @@ console.log(data.vendedor_id.user_id === user.user_id)
               color: "#000",
               fontSize: 20,
               fontWeight: "bold",
+              textAlign: "center",
             }}
           >
             {data.titulo}
@@ -207,20 +177,38 @@ console.log(data.vendedor_id.user_id === user.user_id)
             ""
           )}
         </View>
-
-        <Text
-          style={{
-            color: "black",
-            margin: 10,
-            fontSize: 15,
-            fontFamily: "roboto-regular",
-          }}
-        >
-          {data.descripcion}
-        </Text>
-        <Text className="font-semibold">Condiciones de intercambio:</Text>
-        <Text>{data.condiciones_intercambio}</Text>
+        <View>
+          <Text
+            style={{
+              color: "black",
+              margin: 10,
+              fontSize: 15,
+              fontFamily: "roboto-regular",
+            }}
+          >
+            {data.descripcion}
+          </Text>
+        </View>
+        {data.trueque ? (
+          <View className="flex items-center">
+            <Text className="font-semibold">Condiciones de intercambio:</Text>
+            <Text>{data.condiciones_intercambio}</Text>
+          </View>
+        ) : null}
       </View>
+      {data.venta ? (
+        <View className="flex justify-center items-center mb-3">
+          <Text>Precio de venta:</Text>
+          <Text
+            style={{
+              fontSize: 20,
+              fontFamily: "roboto-bold",
+            }}
+          >
+            {data.precio}
+          </Text>
+        </View>
+      ) : null}
       {/* <TextInput
         multiline={true}
         numberOfLines={4}

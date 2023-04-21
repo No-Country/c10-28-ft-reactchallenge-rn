@@ -27,7 +27,6 @@ const Camara = () => {
     if (cameraRef) {
       try {
         const data = await cameraRef.current.takePictureAsync();
-        console.log(data);
         setImage(data.uri);
       } catch (error) {
         console.log(error);
@@ -54,7 +53,8 @@ const Camara = () => {
           className="flex-1"
           type={type}
           flashMode={flash}
-          ref={cameraRef}>
+          ref={cameraRef}
+        >
           <View className=" bg-black flex flex-row justify-between pt-7 px-5">
             <Botons
               icon="retweet"
