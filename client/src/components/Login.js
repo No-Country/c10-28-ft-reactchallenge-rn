@@ -34,6 +34,8 @@ const data = {
     navigation.navigate("Registro");
   };
 
+  
+
   return (
     <View style={styles.container}>
       <View
